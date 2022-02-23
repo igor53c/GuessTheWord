@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GuessTheWord</string>
+
+    <string name="your_word">Tvoja reč:</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
 </resources>

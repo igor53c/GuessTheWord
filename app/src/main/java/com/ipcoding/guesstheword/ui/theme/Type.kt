@@ -10,10 +10,10 @@ import com.ipcoding.guesstheword.R
 
 private val AppFontFamily = FontFamily(
     fonts = listOf(
-        Font(R.font.signika_medium),
-        Font(R.font.signika_bold, weight = FontWeight.Bold),
-        Font(R.font.signika_light, weight = FontWeight.Light),
-        Font(R.font.signika_regular, weight = FontWeight.Thin)
+        Font(R.font.ranchers_regular),
+        Font(R.font.ranchers_regular, weight = FontWeight.Bold),
+        Font(R.font.ranchers_regular, weight = FontWeight.Light),
+        Font(R.font.ranchers_regular, weight = FontWeight.Thin)
     )
 )
 

@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 
 val Green = Color(0xFF00CCFF)
 val Blue100 = Color(0xFF00A8EA)
+val Gray10 = Color(0xFFD1D1D1)
 
 object Colors {
     val Blue = Blue100
@@ -13,7 +14,7 @@ object Colors {
 fun lightAppColors(
     primary: Color = Blue100,
     primaryVariant: Color = Color(0xFF3700B3),
-    secondary: Color = Color(0xFF03DAC6),
+    secondary: Color = Gray10,
     secondaryVariant: Color = Green,
     background: Color = Color.White,
     surface: Color = Color.White,
@@ -42,7 +43,7 @@ fun lightAppColors(
 fun darkAppColors(
     primary: Color = Blue100,
     primaryVariant: Color = Color(0xFF3700B3),
-    secondary: Color = Color(0xFF03DAC6),
+    secondary: Color = Gray10,
     secondaryVariant: Color = Green,
     background: Color = Color(0xFF121212),
     surface: Color = Color(0xFF121212),
