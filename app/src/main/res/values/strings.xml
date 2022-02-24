@@ -4,4 +4,6 @@
     <string name="your_word">Tvoja reč:</string>
     <string name="yes">Da</string>
     <string name="no">Ne</string>
+    <string name="backspace_icon">Backspace icon</string>
+    <string name="enter_icon">Enter icon</string>
 </resources>

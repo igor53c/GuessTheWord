@@ -57,7 +57,9 @@ object AppModule {
             createDatabase = CreateDatabase(letterRepository),
             saveLetter = SaveLetter(letterRepository),
             getLetters = GetLetters(letterRepository),
-            checkCurrentWord = CheckCurrentWord(letterRepository)
+            positionCurrentLetter = PositionCurrentLetter(),
+            deleteCurrentLetter = DeleteCurrentLetter(letterRepository),
+            checkIfWordIsCorrect = CheckIfWordIsCorrect(letterRepository)
         )
     }
 }

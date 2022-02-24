@@ -3,19 +3,22 @@ package com.ipcoding.guesstheword.ui.theme
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-val Green = Color(0xFF00CCFF)
+val Green10 = Color(0xFF03D87F)
 val Blue100 = Color(0xFF00A8EA)
-val Gray10 = Color(0xFFD1D1D1)
+val Gray10 = Color(0xFF9B9B9B)
+val Yellow10 = Color(0xFFE5F622)
 
 object Colors {
     val Blue = Blue100
+    val Yellow = Yellow10
+    val Green = Green10
 }
 
 fun lightAppColors(
     primary: Color = Blue100,
     primaryVariant: Color = Color(0xFF3700B3),
     secondary: Color = Gray10,
-    secondaryVariant: Color = Green,
+    secondaryVariant: Color = Green10,
     background: Color = Color.White,
     surface: Color = Color.White,
     error: Color = Color(0xFFB00020),
@@ -44,7 +47,7 @@ fun darkAppColors(
     primary: Color = Blue100,
     primaryVariant: Color = Color(0xFF3700B3),
     secondary: Color = Gray10,
-    secondaryVariant: Color = Green,
+    secondaryVariant: Color = Green10,
     background: Color = Color(0xFF121212),
     surface: Color = Color(0xFF121212),
     error: Color = Color(0xFFCF6679),

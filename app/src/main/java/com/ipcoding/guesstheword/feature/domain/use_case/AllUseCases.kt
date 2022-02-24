@@ -4,5 +4,7 @@ data class AllUseCases (
     val createDatabase: CreateDatabase,
     val saveLetter: SaveLetter,
     val getLetters: GetLetters,
-    val checkCurrentWord: CheckCurrentWord
+    val positionCurrentLetter: PositionCurrentLetter,
+    val deleteCurrentLetter: DeleteCurrentLetter,
+    val checkIfWordIsCorrect: CheckIfWordIsCorrect
 )

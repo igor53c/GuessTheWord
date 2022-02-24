@@ -23,8 +23,8 @@ class GameViewModel @Inject constructor(
     private var _guessingWord = mutableStateOf("")
     val guessingWord: State<String> = _guessingWord
 
-    private var _currentWord  = mutableStateOf("")
-    val currentWord: State<String> = _currentWord
+    private var _wordIsCorrect = mutableStateOf(false)
+    val wordIsCorrect: State<Boolean> = _wordIsCorrect
 
     private var  _currentLetter = mutableStateOf(0)
     val currentLetter: State<Int> = _currentLetter
@@ -38,7 +38,7 @@ class GameViewModel @Inject constructor(
     private var getLettersJob: Job? = null
 
     init {
-        _guessingWord.value = "bokal"
+        _guessingWord.value = "BOKAL"
         getLetters()
     }
 
@@ -49,17 +49,31 @@ class GameViewModel @Inject constructor(
                 row = currentRow.value,
                 column = currentLetter.value
             )
-            _currentWord.value = allUseCases.checkCurrentWord(currentRow.value)
         }
+        positionCurrentLetter()
     }
 
-    fun resetCurrentWordHasAllLetters() {
-        _currentWord.value = ""
+    private fun positionCurrentLetter() {
+        _currentLetter.value =
+            allUseCases.positionCurrentLetter(currentRow.value, currentLetter.value, letters.value)
     }
 
-    fun changeTheCurrentLetter(currentLetter: Int, row: Int) {
+    fun checkIfWordIsCorrect() {
+        viewModelScope.launch {
+            _wordIsCorrect.value = allUseCases.checkIfWordIsCorrect(
+                guessingWord = guessingWord.value,
+                row = currentRow.value,
+                letters = letters.value
+            )
+        }
+        if(currentRow.value == 4) _wordIsCorrect.value = true else
+            _currentRow.value = currentRow.value + 1
+        _currentLetter.value = 0
+    }
+
+    fun selectCurrentLetter(column: Int, row: Int) {
         if(row == currentRow.value) {
-            _currentLetter.value = currentLetter
+            _currentLetter.value = column
         }
     }
 
@@ -72,4 +86,13 @@ class GameViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
+    fun deleteCurrentLetter() {
+        viewModelScope.launch {
+            _currentLetter.value = allUseCases.deleteCurrentLetter(
+                row = currentRow.value,
+                column = currentLetter.value,
+                letters = letters.value
+            )
+        }
+    }
 }

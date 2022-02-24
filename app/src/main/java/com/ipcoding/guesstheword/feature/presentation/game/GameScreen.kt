@@ -1,21 +1,24 @@
 package com.ipcoding.guesstheword.feature.presentation.game
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.ipcoding.guesstheword.core.util.Constants.ALL_LETTERS
 import com.ipcoding.guesstheword.feature.presentation.game.components.OneLetter
-import com.ipcoding.guesstheword.feature.presentation.game.components.QuestionDialog
 import com.ipcoding.guesstheword.ui.theme.AppTheme
+import com.ipcoding.guesstheword.feature.presentation.game.components.Keyboard
+import com.ipcoding.guesstheword.feature.presentation.util.Screen
 
 @Composable
 fun GameScreen(
@@ -26,16 +29,13 @@ fun GameScreen(
     val currentLetter  = viewModel.currentLetter.value
     val currentRow  = viewModel.currentRow.value
     val letters  = viewModel.letters.value
-    val currentWord = viewModel.currentWord.value
+    val wordIsCorrect  = viewModel.wordIsCorrect.value
+    val guessingWord  = viewModel.guessingWord.value
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(
-                top = AppTheme.dimensions.spaceSmall,
-                start = AppTheme.dimensions.spaceSmall,
-                end = AppTheme.dimensions.spaceSmall
-            )
+            .padding(AppTheme.dimensions.spaceSmall)
     ) {
         BoxWithConstraints(
             modifier = Modifier
@@ -45,74 +45,53 @@ fun GameScreen(
         ) {
             maxWidth.value = this.maxWidth
 
-            Column() {
-                LazyColumn(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                ) {
-                    items(5) { item1 ->
-                        LazyRow(modifier = Modifier) {
-                            items(5) { item2 ->
-                                val backgroundColor = if(currentLetter == item2 && currentRow == item1)
-                                    AppTheme.colors.secondary else AppTheme.colors.background
+            LazyColumn(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+            ) {
+                items(letters.size / 5) { item1 ->
+                    LazyRow(modifier = Modifier) {
+                        items(5) { item2 ->
 
-                                val text = if(letters.isEmpty()) "" else
-                                    letters[item1 * 5 + item2].text
+                            if(letters.isNotEmpty()) {
+
+                                val letter = letters[item1 * 5 + item2]
+
+                                val borderColor = if(currentLetter == item2 && currentRow == item1)
+                                    AppTheme.colors.secondary else Color(letter.color)
+
                                 OneLetter(
-                                    text = text,
-                                    textColor = AppTheme.colors.primary,
+                                    text = letter.text,
+                                    textColor = Color(letter.color),
+                                    borderColor = borderColor,
                                     size = maxWidth.value / 5,
                                     style = AppTheme.typography.h3,
-                                    backgroundColor = backgroundColor,
                                     padding = AppTheme.dimensions.spaceExtraSmall,
                                     borderWidth = AppTheme.dimensions.spaceExtraSmall,
                                     shape = AppTheme.customShapes.roundedCornerShapeMedium,
-                                    onClick = { viewModel.changeTheCurrentLetter(item2, item1) }
+                                    onClick = { viewModel.selectCurrentLetter(item2, item1) }
                                 )
                             }
                         }
                     }
                 }
+            }
 
-                Box(modifier = Modifier.weight(1f)) {
-                    Log.d("kontrola", currentWord)
-                    if (currentWord.length == 5) {
-                        QuestionDialog(
-                            currentWord = currentWord,
-                            onNoClick = {
-                                viewModel.resetCurrentWordHasAllLetters()
-                            },
-                            onYesClick = {
-                                viewModel.resetCurrentWordHasAllLetters()
-                            }
+            Box(modifier = Modifier.align(alignment = Alignment.BottomCenter)) {
+
+                if(wordIsCorrect) {
+                    Button(
+                        onClick = { navController.navigate(Screen.StartScreen.route) },
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = AppTheme.colors.primary,
+                            contentColor = AppTheme.colors.background
                         )
-                    }
-                }
-                    LazyColumn(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier
                     ) {
-                        items(3) { item1 ->
-                            LazyRow(modifier = Modifier) {
-                                items(9) { item2 ->
-
-                                    val char = ALL_LETTERS[item1 * 9 + item2]
-                                    OneLetter(
-                                        text = char,
-                                        textColor = AppTheme.colors.primary,
-                                        size = maxWidth.value / 9,
-                                        style = AppTheme.typography.h5,
-                                        backgroundColor = AppTheme.colors.background,
-                                        padding = AppTheme.dimensions.spaceSuperSmall,
-                                        borderWidth = AppTheme.dimensions.spaceSuperSmall,
-                                        shape = AppTheme.customShapes.roundedCornerShapeSmall,
-                                        onClick = { viewModel.saveLetter(char) }
-                                    )
-                                }
-                            }
-                        }
+                        Text(text = guessingWord)
                     }
-
+                } else {
+                    Keyboard(maxWidth = maxWidth.value)
+                }
             }
         }
     }

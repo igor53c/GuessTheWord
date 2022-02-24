@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,7 +21,7 @@ import androidx.compose.ui.unit.Dp
 fun OneLetter(
     text: String,
     textColor: Color,
-    backgroundColor: Color,
+    borderColor: Color,
     size: Dp,
     padding: Dp,
     style: TextStyle,
@@ -39,11 +40,7 @@ fun OneLetter(
                 .fillMaxSize()
                 .border(
                     width = borderWidth,
-                    color = textColor,
-                    shape = shape
-                )
-                .background(
-                    color = backgroundColor,
+                    color = borderColor,
                     shape = shape
                 ),
             contentAlignment = Alignment.Center

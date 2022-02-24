@@ -24,8 +24,8 @@ fun QuestionDialog(
     Column(
         modifier = Modifier
             .background(
-            color = AppTheme.colors.primary,
-            shape = AppTheme.customShapes.roundedCornerShapeSmall
+                color = AppTheme.colors.primary,
+                shape = AppTheme.customShapes.roundedCornerShapeSmall
             )
             .padding(AppTheme.dimensions.spaceMedium)
     ) {
@@ -39,6 +39,9 @@ fun QuestionDialog(
             modifier = Modifier
                 .fillMaxWidth()
         )
+
+        Spacer(modifier = Modifier.height(AppTheme.dimensions.spaceMedium))
+
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
