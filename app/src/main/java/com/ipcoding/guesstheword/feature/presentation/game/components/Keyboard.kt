@@ -11,11 +11,11 @@ import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ipcoding.guesstheword.R
-import com.ipcoding.guesstheword.core.util.Constants
 import com.ipcoding.guesstheword.feature.presentation.game.GameViewModel
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 
@@ -24,6 +24,7 @@ fun Keyboard(
     maxWidth: Dp,
     viewModel:  GameViewModel = hiltViewModel()
 ) {
+    val keyboardLetters = viewModel.keyboardLetters.value
     Row(
         modifier = Modifier.height(maxWidth * 3 / 10)
     ) {
@@ -35,18 +36,21 @@ fun Keyboard(
                 LazyRow(modifier = Modifier) {
                     items(9) { item2 ->
 
-                        val char = Constants.ALL_LETTERS[item1 * 9 + item2]
-                        OneLetter(
-                            text = char,
-                            textColor = AppTheme.colors.primary,
-                            borderColor = AppTheme.colors.primary,
-                            size = maxWidth / 10,
-                            style = AppTheme.typography.h5,
-                            padding = AppTheme.dimensions.spaceSuperSmall,
-                            borderWidth = AppTheme.dimensions.spaceSuperSmall,
-                            shape = AppTheme.customShapes.roundedCornerShapeSmall,
-                            onClick = { viewModel.saveLetter(char) }
-                        )
+                        if(keyboardLetters.isNotEmpty()) {
+                            val keyboardLetter = keyboardLetters[item1 * 9 + item2]
+
+                            OneLetter(
+                                text = keyboardLetter.text,
+                                textColor = Color(keyboardLetter.color),
+                                borderColor =  Color(keyboardLetter.color),
+                                size = maxWidth / 10,
+                                style = AppTheme.typography.h5,
+                                padding = AppTheme.dimensions.spaceSuperSmall,
+                                borderWidth = AppTheme.dimensions.spaceSuperSmall,
+                                shape = AppTheme.customShapes.roundedCornerShapeSmall,
+                                onClick = { viewModel.saveLetter(keyboardLetter.text) }
+                            )
+                        }
                     }
                 }
             }
@@ -62,7 +66,7 @@ fun Keyboard(
             KeyboardIcons(
                 width = maxWidth / 10,
                 height = maxWidth / 5,
-                onClick = { viewModel.checkIfWordIsCorrect() },
+                onClick = { viewModel.checkAllLettersEntered() },
                 imageVector = Icons.Default.Send,
                 contentDescription = stringResource(id = R.string.enter_icon),
             )

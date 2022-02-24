@@ -16,7 +16,6 @@ class DeleteCurrentLetter(
             letterRepository.insertLetter(letter)
             return column
         } else {
-
             val newPosition = (column + 4) % 5
             letter = letters.get(row * 5 + newPosition)
             letter.text = ""

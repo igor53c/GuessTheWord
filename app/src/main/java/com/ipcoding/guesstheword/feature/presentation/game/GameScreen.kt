@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -19,6 +20,7 @@ import com.ipcoding.guesstheword.feature.presentation.game.components.OneLetter
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 import com.ipcoding.guesstheword.feature.presentation.game.components.Keyboard
 import com.ipcoding.guesstheword.feature.presentation.util.Screen
+import com.ipcoding.guesstheword.ui.theme.Colors
 
 @Composable
 fun GameScreen(
@@ -31,6 +33,7 @@ fun GameScreen(
     val letters  = viewModel.letters.value
     val wordIsCorrect  = viewModel.wordIsCorrect.value
     val guessingWord  = viewModel.guessingWord.value
+    val wordIsInDictionary  = viewModel.wordIsInDictionary.value
 
     Column(
         modifier = Modifier
@@ -57,8 +60,11 @@ fun GameScreen(
 
                                 val letter = letters[item1 * 5 + item2]
 
-                                val borderColor = if(currentLetter == item2 && currentRow == item1)
-                                    AppTheme.colors.secondary else Color(letter.color)
+                                val borderColor =
+                                    if(currentLetter == item2 && currentRow == item1) {
+                                    if(letter.color == Colors.Error.toArgb())
+                                        Colors.Red else Colors.Gray
+                                } else Color(letter.color)
 
                                 OneLetter(
                                     text = letter.text,

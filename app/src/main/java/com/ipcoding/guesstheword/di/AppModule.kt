@@ -59,7 +59,10 @@ object AppModule {
             getLetters = GetLetters(letterRepository),
             positionCurrentLetter = PositionCurrentLetter(),
             deleteCurrentLetter = DeleteCurrentLetter(letterRepository),
-            checkIfWordIsCorrect = CheckIfWordIsCorrect(letterRepository)
+            checkIfWordIsCorrect = CheckIfWordIsCorrect(letterRepository),
+            checkAllLettersEntered = CheckAllLettersEntered(letterRepository),
+            getKeyboardLetters = GetKeyboardLetters(letterRepository),
+            checkWordInDictionary = CheckWordInDictionary()
         )
     }
 }

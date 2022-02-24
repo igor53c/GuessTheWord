@@ -7,11 +7,16 @@ val Green10 = Color(0xFF03D87F)
 val Blue100 = Color(0xFF00A8EA)
 val Gray10 = Color(0xFF9B9B9B)
 val Yellow10 = Color(0xFFE5F622)
+val Red10 = Color(0xFFF4511E)
+val Red20 = Color(0xFFD81B60)
 
 object Colors {
     val Blue = Blue100
     val Yellow = Yellow10
     val Green = Green10
+    val Error = Red20
+    val Red = Red10
+    val Gray = Gray10
 }
 
 fun lightAppColors(

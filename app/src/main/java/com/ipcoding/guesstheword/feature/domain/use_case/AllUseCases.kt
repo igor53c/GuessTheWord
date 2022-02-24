@@ -6,5 +6,8 @@ data class AllUseCases (
     val getLetters: GetLetters,
     val positionCurrentLetter: PositionCurrentLetter,
     val deleteCurrentLetter: DeleteCurrentLetter,
-    val checkIfWordIsCorrect: CheckIfWordIsCorrect
+    val checkIfWordIsCorrect: CheckIfWordIsCorrect,
+    val checkAllLettersEntered: CheckAllLettersEntered,
+    val getKeyboardLetters: GetKeyboardLetters,
+    val checkWordInDictionary: CheckWordInDictionary
 )

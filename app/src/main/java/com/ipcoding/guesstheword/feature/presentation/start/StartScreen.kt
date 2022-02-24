@@ -31,7 +31,10 @@ fun StartScreen (
             color = AppTheme.colors.primary,
             textAlign = TextAlign.Center,
             style = AppTheme.typography.h2,
-            modifier = Modifier.clickable { navController.navigate(Screen.GameScreen.route) }
+            modifier = Modifier.clickable {
+                viewModel.saveRandomWord()
+                navController.navigate(Screen.GameScreen.route)
+            }
         )
     }
 }

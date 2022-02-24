@@ -13,15 +13,31 @@ class LetterRepositoryImpl(
         dao.insertLetter(letter)
     }
 
+    override suspend fun deleteLetter(letter: Letter) {
+        dao.deleteLetter(letter)
+    }
+
     override suspend fun deleteAll() {
         dao.deleteAll()
     }
 
-    override fun getLetters(): Flow<List<Letter>> {
+    override fun getLettersFlow(): Flow<List<Letter>> {
+        return dao.getLettersFlow()
+    }
+
+    override fun getKeyboardLettersFlow(): Flow<List<Letter>> {
+        return dao.getKeyboardLettersFlow()
+    }
+
+    override suspend fun getLetters(): List<Letter> {
         return dao.getLetters()
     }
 
     override suspend fun getLetter(row: Int, column: Int): String {
         return dao.getLetter(row, column)
+    }
+
+    override suspend fun getKeyboardLetter(text: String): Letter {
+        return dao.getKeyboardLetter(text)
     }
 }

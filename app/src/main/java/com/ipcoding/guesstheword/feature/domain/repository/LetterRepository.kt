@@ -7,9 +7,17 @@ interface LetterRepository {
 
     suspend fun insertLetter(letter: Letter)
 
+    suspend fun deleteLetter(letter: Letter)
+
     suspend fun deleteAll()
 
-    fun getLetters(): Flow<List<Letter>>
+    fun getLettersFlow(): Flow<List<Letter>>
+
+    fun getKeyboardLettersFlow(): Flow<List<Letter>>
+
+    suspend fun getLetters(): List<Letter>
 
     suspend fun getLetter(row: Int, column: Int): String
+
+    suspend fun getKeyboardLetter(text: String): Letter
 }

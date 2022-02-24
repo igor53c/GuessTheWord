@@ -3,6 +3,7 @@ package com.ipcoding.guesstheword.feature.presentation.start
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ipcoding.guesstheword.core.domain.preferences.Preferences
+import com.ipcoding.guesstheword.core.util.SetWords.SET_WORDS
 import com.ipcoding.guesstheword.feature.domain.use_case.AllUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,5 +19,9 @@ class StartViewModel @Inject constructor(
         viewModelScope.launch {
             allUseCases.createDatabase()
         }
+    }
+
+    fun saveRandomWord() {
+        preferences.saveRandomWord(SET_WORDS.random())
     }
 }
