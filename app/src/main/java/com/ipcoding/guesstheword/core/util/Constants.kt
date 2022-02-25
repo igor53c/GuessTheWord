@@ -7,4 +7,5 @@ object Constants {
         "A", "S", "D", "F", "G", "H", "J", "K", "L",
         "C", "V", "B", "N", "M", "Đ", "Č", "Ć", "Ž"
     )
+    val DURATION_LETTER_ANIMATION = 1000
 }

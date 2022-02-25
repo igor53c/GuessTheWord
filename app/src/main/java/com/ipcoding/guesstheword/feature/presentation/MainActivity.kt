@@ -5,9 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.material.Surface
+import androidx.compose.runtime.SideEffect
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ipcoding.guesstheword.feature.presentation.game.GameScreen
 import com.ipcoding.guesstheword.feature.presentation.start.StartScreen
 import com.ipcoding.guesstheword.feature.presentation.util.Screen
@@ -18,12 +20,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             AppTheme {
                 Surface(
                     color = AppTheme.colors.background
                 ) {
                     val navController = rememberNavController()
+                    val systemUiController = rememberSystemUiController()
+                    systemUiController.isStatusBarVisible = false
                     NavHost(
                         navController = navController,
                         startDestination = Screen.StartScreen.route

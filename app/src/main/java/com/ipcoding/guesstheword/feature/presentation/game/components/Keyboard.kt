@@ -1,5 +1,7 @@
 package com.ipcoding.guesstheword.feature.presentation.game.components
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -12,10 +14,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ipcoding.guesstheword.R
+import com.ipcoding.guesstheword.core.util.Constants.DURATION_LETTER_ANIMATION
 import com.ipcoding.guesstheword.feature.presentation.game.GameViewModel
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 
@@ -25,6 +29,7 @@ fun Keyboard(
     viewModel:  GameViewModel = hiltViewModel()
 ) {
     val keyboardLetters = viewModel.keyboardLetters.value
+
     Row(
         modifier = Modifier.height(maxWidth * 3 / 10)
     ) {
@@ -39,10 +44,15 @@ fun Keyboard(
                         if(keyboardLetters.isNotEmpty()) {
                             val keyboardLetter = keyboardLetters[item1 * 9 + item2]
 
+                            val color = animateColorAsState(
+                                targetValue = Color(keyboardLetter.color),
+                                animationSpec = tween(DURATION_LETTER_ANIMATION)
+                            ).value
+
                             OneLetter(
                                 text = keyboardLetter.text,
-                                textColor = Color(keyboardLetter.color),
-                                borderColor =  Color(keyboardLetter.color),
+                                textColor = color.toArgb(),
+                                borderColor =  color,
                                 size = maxWidth / 10,
                                 style = AppTheme.typography.h5,
                                 padding = AppTheme.dimensions.spaceSuperSmall,

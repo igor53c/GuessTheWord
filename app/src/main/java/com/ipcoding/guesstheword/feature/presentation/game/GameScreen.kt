@@ -1,8 +1,5 @@
 package com.ipcoding.guesstheword.feature.presentation.game
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -16,9 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ipcoding.guesstheword.feature.presentation.game.components.OneLetter
@@ -26,7 +21,7 @@ import com.ipcoding.guesstheword.ui.theme.AppTheme
 import com.ipcoding.guesstheword.feature.presentation.game.components.Keyboard
 import com.ipcoding.guesstheword.feature.presentation.util.Screen
 import com.ipcoding.guesstheword.ui.theme.Colors
-import com.ipcoding.guesstheword.R
+import com.ipcoding.guesstheword.feature.presentation.game.components.ErrorText
 
 @Composable
 fun GameScreen(
@@ -67,7 +62,11 @@ fun GameScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(AppTheme.dimensions.spaceSmall)
+            .padding(
+                top = AppTheme.dimensions.spaceSmall,
+                start = AppTheme.dimensions.spaceSmall,
+                end = AppTheme.dimensions.spaceSmall
+            )
     ) {
         BoxWithConstraints(
             modifier = Modifier
@@ -90,15 +89,16 @@ fun GameScreen(
 
                                     val letter = letters[item1 * gameNumber + item2]
 
-                                    val borderColor =
-                                        if(currentLetter == item2 && currentRow == item1) {
-                                            if(letter.color == Colors.Error.toArgb())
-                                                Colors.Red else Colors.Gray
-                                        } else Color(letter.color)
+                                    val borderColor = if(
+                                        currentLetter == item2 && currentRow == item1
+                                    ) {
+                                        if(letter.color == Colors.Error.toArgb())
+                                            Colors.Red else Colors.Gray
+                                    } else Color(letter.color)
 
                                     OneLetter(
                                         text = letter.text,
-                                        textColor = Color(letter.color),
+                                        textColor = letter.color,
                                         borderColor = borderColor,
                                         size = maxWidth.value / gameNumber,
                                         style = style.value,
@@ -113,22 +113,7 @@ fun GameScreen(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(AppTheme.dimensions.spaceMedium))
-
-                AnimatedVisibility(
-                    visible = !wordIsInDictionary,
-                    enter = fadeIn(),
-                    exit = fadeOut()
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.not_in_dictionary),
-                        style = AppTheme.typography.h4,
-                        color = AppTheme.colors.primary,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    )
-                }
+                ErrorText(wordIsInDictionary = wordIsInDictionary)
             }
 
             Box(modifier = Modifier.align(alignment = Alignment.BottomCenter)) {

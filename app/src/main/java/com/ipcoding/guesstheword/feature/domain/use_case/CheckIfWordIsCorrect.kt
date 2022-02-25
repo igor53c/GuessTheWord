@@ -1,8 +1,12 @@
 package com.ipcoding.guesstheword.feature.domain.use_case
 
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import com.ipcoding.guesstheword.core.util.Constants.DURATION_LETTER_ANIMATION
+import com.ipcoding.guesstheword.feature.domain.model.Letter
 import com.ipcoding.guesstheword.feature.domain.repository.LetterRepository
 import com.ipcoding.guesstheword.ui.theme.Colors
+import kotlinx.coroutines.delay
 
 class CheckIfWordIsCorrect(
     private val letterRepository: LetterRepository
@@ -12,24 +16,32 @@ class CheckIfWordIsCorrect(
 
         var wordIsCorrect = true
         val correctWord = mutableListOf<String>()
-        val currentLetters = mutableListOf<String>()
+        val currentVariableLetters = mutableListOf<String>()
+        val currentLetters = mutableListOf<Letter>()
         val letters = letterRepository.getLetters()
 
-        for(i in 0 until guessingWord.length) {
+        for(i in guessingWord.indices) {
+            val currentLetter = letters[row * number + i]
+            currentLetters.add(i, currentLetter)
             correctWord.add(i, guessingWord[i].toString().lowercase())
-            currentLetters.add(i, letters[row * number + i].text.lowercase())
+            currentVariableLetters.add(i, currentLetter.text.lowercase())
+            currentLetter.color = Color.Transparent.toArgb()
+            letterRepository.insertLetter(currentLetter)
+            currentLetter.color = Colors.Blue.toArgb()
+            delay((DURATION_LETTER_ANIMATION / 5).toLong())
         }
 
         for(i in 0 until number) {
 
             val currentLetter = letters[row * number + i]
 
-            if(correctWord[i] == currentLetters[i]) {
+            if(correctWord[i] == currentVariableLetters[i]) {
 
                 currentLetter.color = Colors.Green.toArgb()
                 correctWord[i] = ""
-                currentLetters[i] = "_"
-                letterRepository.insertLetter(currentLetter)
+                currentVariableLetters[i] = "_"
+                currentLetters[i] = currentLetter
+
                 val keyboardLetter = letterRepository.getKeyboardLetter(currentLetter.text)
                 keyboardLetter.color = Colors.Green.toArgb()
                 letterRepository.insertLetter(keyboardLetter)
@@ -41,11 +53,12 @@ class CheckIfWordIsCorrect(
 
             val currentLetter = letters[row * number + i]
 
-            if(correctWord.contains(currentLetters[i])) {
+            if(correctWord.contains(currentVariableLetters[i])) {
                 currentLetter.color = Colors.Yellow.toArgb()
-                correctWord[correctWord.indexOf(currentLetters[i])] = ""
-                currentLetters[i] = "_"
-                letterRepository.insertLetter(currentLetter)
+                correctWord[correctWord.indexOf(currentVariableLetters[i])] = ""
+                currentVariableLetters[i] = "_"
+                currentLetters[i] = currentLetter
+
                 val keyboardLetter = letterRepository.getKeyboardLetter(currentLetter.text)
                 if(keyboardLetter.color != Colors.Green.toArgb()) {
                     keyboardLetter.color = Colors.Yellow.toArgb()
@@ -55,10 +68,15 @@ class CheckIfWordIsCorrect(
         }
 
         for(i in 0 until number) {
+            letterRepository.insertLetter(currentLetters[i])
+            delay((DURATION_LETTER_ANIMATION / 5).toLong())
+        }
+
+        for(i in 0 until number) {
 
             val currentLetter = letters[row * number + i]
 
-            if(currentLetters[i] != "_") {
+            if(currentVariableLetters[i] != "_") {
                 val keyboardLetter = letterRepository.getKeyboardLetter(currentLetter.text)
                 if(
                     keyboardLetter.color != Colors.Green.toArgb() &&

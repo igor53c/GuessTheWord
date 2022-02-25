@@ -1,13 +1,12 @@
 package com.ipcoding.guesstheword.feature.presentation.game.components
 
-import androidx.compose.foundation.background
+import androidx.compose.animation.*
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,7 +19,7 @@ import androidx.compose.ui.unit.Dp
 @Composable
 fun OneLetter(
     text: String,
-    textColor: Color,
+    textColor: Int,
     borderColor: Color,
     size: Dp,
     padding: Dp,
@@ -35,21 +34,27 @@ fun OneLetter(
             .padding(padding)
             .clickable { onClick() }
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .border(
-                    width = borderWidth,
-                    color = borderColor,
-                    shape = shape
-                ),
-            contentAlignment = Alignment.Center
+       AnimatedVisibility(
+            visible = textColor != 0,
+            enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2}),
+            exit = fadeOut()
         ) {
-            Text(
-                text = text,
-                color = textColor,
-                style = style
-            )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .border(
+                        width = borderWidth,
+                        color = borderColor,
+                        shape = shape
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = text,
+                    color = Color(textColor),
+                    style = style
+                )
+            }
         }
     }
 }

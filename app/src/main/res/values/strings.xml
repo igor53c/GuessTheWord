@@ -6,5 +6,5 @@
     <string name="no">Ne</string>
     <string name="backspace_icon">Backspace icon</string>
     <string name="enter_icon">Enter icon</string>
-    <string name="not_in_dictionary">Reč nije u rečniku!</string>
+    <string name="not_in_dictionary">Reč nije u rečniku</string>
 </resources>

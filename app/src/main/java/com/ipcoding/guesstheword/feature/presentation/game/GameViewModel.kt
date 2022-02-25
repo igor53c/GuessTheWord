@@ -59,6 +59,7 @@ class GameViewModel @Inject constructor(
         loadRandomWord()
     }
 
+
     private fun loadRandomWord() {
         _guessingWord.value = preferences.loadRandomWord().toString()
         _gameNumber.value = _guessingWord.value.length
@@ -130,17 +131,20 @@ class GameViewModel @Inject constructor(
     }
 
     private suspend fun checkIfWordIsCorrect() {
+        val row = currentRow.value
+        _currentLetter.value = -1
+        if(row != (gameNumber.value - 1)) {
+            _currentLetter.value = 0
+            _currentRow.value = row + 1
+        }
         _wordIsCorrect.value = allUseCases.checkIfWordIsCorrect(
             guessingWord = guessingWord.value,
-            row = currentRow.value,
+            row = row,
             number = gameNumber.value
         )
-        if(currentRow.value == (gameNumber.value - 1)) {
+        if(row == (gameNumber.value - 1)) {
             _currentLetter.value = -1
             _wordIsCorrect.value = true
-        } else {
-            _currentLetter.value = 0
-            _currentRow.value = currentRow.value + 1
         }
     }
 
