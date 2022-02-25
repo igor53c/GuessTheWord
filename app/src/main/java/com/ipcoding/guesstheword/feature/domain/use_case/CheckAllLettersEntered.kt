@@ -9,12 +9,12 @@ class CheckAllLettersEntered(
     private val letterRepository: LetterRepository
 ) {
 
-    suspend operator fun invoke(row: Int, letters: List<Letter>): Boolean {
+    suspend operator fun invoke(row: Int, letters: List<Letter>, number: Int): Boolean {
 
         var areEntered = true
 
-        for (column in 0..4) {
-            val letter = letters[row * 5 + column]
+        for (column in 0 until number) {
+            val letter = letters[row * number + column]
             if(letter.text == "") {
                 areEntered = false
                 letter.color = Colors.Error.toArgb()

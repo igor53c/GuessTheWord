@@ -1,6 +1,5 @@
 package com.ipcoding.guesstheword.feature.presentation.game
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -10,8 +9,10 @@ import com.ipcoding.guesstheword.feature.domain.model.Letter
 import com.ipcoding.guesstheword.feature.domain.use_case.AllUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,11 +22,16 @@ class GameViewModel @Inject constructor(
     private val allUseCases: AllUseCases
 ) : ViewModel() {
 
+    private var _gameNumber = mutableStateOf(5)
+    val gameNumber: State<Int> = _gameNumber
+
     private var _guessingWord = mutableStateOf("")
     val guessingWord: State<String> = _guessingWord
 
     private var _wordIsCorrect = mutableStateOf(false)
     val wordIsCorrect: State<Boolean> = _wordIsCorrect
+
+    private var pressedEnter = mutableStateOf(false)
 
     private var _wordIsInDictionary = mutableStateOf(true)
     val wordIsInDictionary: State<Boolean> = _wordIsInDictionary
@@ -45,6 +51,7 @@ class GameViewModel @Inject constructor(
     private var getLettersJob: Job? = null
 
     private var getKeyboardLettersJob: Job? = null
+    private var wordIsInDictionaryJob: Job? = null
 
     init {
         getLetters()
@@ -54,6 +61,7 @@ class GameViewModel @Inject constructor(
 
     private fun loadRandomWord() {
         _guessingWord.value = preferences.loadRandomWord().toString()
+        _gameNumber.value = _guessingWord.value.length
     }
 
     fun saveLetter(letter: String) {
@@ -61,7 +69,8 @@ class GameViewModel @Inject constructor(
             allUseCases.saveLetter(
                 char = letter,
                 row = currentRow.value,
-                column = currentLetter.value
+                column = currentLetter.value,
+                number = gameNumber.value
             )
         }
         positionCurrentLetter()
@@ -69,31 +78,64 @@ class GameViewModel @Inject constructor(
 
     private fun positionCurrentLetter() {
         _currentLetter.value =
-            allUseCases.positionCurrentLetter(currentRow.value, currentLetter.value, letters.value)
+            allUseCases.positionCurrentLetter(
+                row = currentRow.value,
+                position = currentLetter.value,
+                letters = letters.value,
+                number = gameNumber.value
+            )
     }
 
     fun checkAllLettersEntered() {
-        viewModelScope.launch {
-            if(allUseCases.checkAllLettersEntered(currentRow.value, letters.value)) {
-                checkWordInDictionary()
+        if(!pressedEnter.value) {
+            pressedEnter.value = true
+            val waitJob = viewModelScope.launch {
+                delay(500L)
+            }
+            viewModelScope.launch {
+                if(allUseCases.checkAllLettersEntered(
+                        row = currentRow.value,
+                        letters = letters.value,
+                        number = gameNumber.value
+                    )) {
+                    checkWordInDictionary()
+                } else forcedComposing()
+
+                waitJob.join()
+                pressedEnter.value = false
             }
         }
-        forcedComposing()
     }
 
     private suspend fun checkWordInDictionary() {
-        if(allUseCases.checkWordInDictionary(currentRow.value, letters.value)) {
+        if(allUseCases.checkWordInDictionary(
+                row = currentRow.value,
+                letters = letters.value,
+                number = gameNumber.value
+            )) {
             checkIfWordIsCorrect()
             _wordIsInDictionary.value = true
-        } else _wordIsInDictionary.value = false
+        } else {
+            _wordIsInDictionary.value = true
+            delay(100L)
+            _wordIsInDictionary.value = false
+            wordIsInDictionaryJob?.cancel()
+            wordIsInDictionaryJob = viewModelScope.launch {
+                repeat(10) {
+                    if(isActive) delay(500L)
+                }
+                _wordIsInDictionary.value = true
+            }
+        }
     }
 
     private suspend fun checkIfWordIsCorrect() {
         _wordIsCorrect.value = allUseCases.checkIfWordIsCorrect(
             guessingWord = guessingWord.value,
-            row = currentRow.value
+            row = currentRow.value,
+            number = gameNumber.value
         )
-        if(currentRow.value == 4) {
+        if(currentRow.value == (gameNumber.value - 1)) {
             _currentLetter.value = -1
             _wordIsCorrect.value = true
         } else {
@@ -138,7 +180,8 @@ class GameViewModel @Inject constructor(
             _currentLetter.value = allUseCases.deleteCurrentLetter(
                 row = currentRow.value,
                 column = currentLetter.value,
-                letters = letters.value
+                letters = letters.value,
+                number = gameNumber.value
             )
         }
         forcedComposing()

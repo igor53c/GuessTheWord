@@ -8,7 +8,7 @@ class CheckIfWordIsCorrect(
     private val letterRepository: LetterRepository
 ) {
 
-    suspend operator fun invoke(guessingWord: String, row: Int): Boolean {
+    suspend operator fun invoke(guessingWord: String, row: Int, number: Int): Boolean {
 
         var wordIsCorrect = true
         val correctWord = mutableListOf<String>()
@@ -17,12 +17,12 @@ class CheckIfWordIsCorrect(
 
         for(i in 0 until guessingWord.length) {
             correctWord.add(i, guessingWord[i].toString().lowercase())
-            currentLetters.add(i, letters[row * 5 + i].text.lowercase())
+            currentLetters.add(i, letters[row * number + i].text.lowercase())
         }
 
-        for(i in 0..4) {
+        for(i in 0 until number) {
 
-            val currentLetter = letters[row * 5 + i]
+            val currentLetter = letters[row * number + i]
 
             if(correctWord[i] == currentLetters[i]) {
 
@@ -37,9 +37,9 @@ class CheckIfWordIsCorrect(
             } else  wordIsCorrect = false
         }
 
-        for(i in 0..4) {
+        for(i in 0 until number) {
 
-            val currentLetter = letters[row * 5 + i]
+            val currentLetter = letters[row * number + i]
 
             if(correctWord.contains(currentLetters[i])) {
                 currentLetter.color = Colors.Yellow.toArgb()
@@ -54,9 +54,9 @@ class CheckIfWordIsCorrect(
             }
         }
 
-        for(i in 0..4) {
+        for(i in 0 until number) {
 
-            val currentLetter = letters[row * 5 + i]
+            val currentLetter = letters[row * number + i]
 
             if(currentLetters[i] != "_") {
                 val keyboardLetter = letterRepository.getKeyboardLetter(currentLetter.text)

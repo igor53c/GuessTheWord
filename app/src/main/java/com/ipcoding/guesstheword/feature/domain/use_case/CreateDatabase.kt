@@ -8,10 +8,10 @@ class CreateDatabase(
     private val letterRepository: LetterRepository
 ) {
 
-    suspend operator fun invoke() {
+    suspend operator fun invoke(number: Int) : Boolean {
         letterRepository.deleteAll()
-        for (row in 0..4) {
-            for (column in 0..4) {
+        for (row in 0 until number) {
+            for (column in 0 until number) {
                 letterRepository.insertLetter(
                     Letter(
                         row = row,
@@ -32,5 +32,6 @@ class CreateDatabase(
                 )
             }
         }
+        return true
     }
 }

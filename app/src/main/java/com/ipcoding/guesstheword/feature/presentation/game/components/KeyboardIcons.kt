@@ -39,7 +39,8 @@ fun KeyboardIcons(
             Icon(
                 imageVector = imageVector,
                 contentDescription = contentDescription,
-                tint = AppTheme.colors.primary
+                tint = AppTheme.colors.primary,
+                modifier = Modifier.padding(AppTheme.dimensions.spaceExtraSmall)
             )
         }
     }

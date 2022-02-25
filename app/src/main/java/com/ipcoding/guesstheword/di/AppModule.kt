@@ -51,7 +51,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideUseCases(
-        letterRepository: LetterRepository
+        letterRepository: LetterRepository,
+        preferences: Preferences
     ): AllUseCases {
         return AllUseCases(
             createDatabase = CreateDatabase(letterRepository),
@@ -62,7 +63,8 @@ object AppModule {
             checkIfWordIsCorrect = CheckIfWordIsCorrect(letterRepository),
             checkAllLettersEntered = CheckAllLettersEntered(letterRepository),
             getKeyboardLetters = GetKeyboardLetters(letterRepository),
-            checkWordInDictionary = CheckWordInDictionary()
+            checkWordInDictionary = CheckWordInDictionary(),
+            saveRandomWord = SaveRandomWord(preferences)
         )
     }
 }

@@ -7,13 +7,13 @@ class SaveLetter(
     private val letterRepository: LetterRepository
 ) {
 
-    suspend operator fun invoke(char: String, row: Int, column: Int) {
+    suspend operator fun invoke(char: String, row: Int, column: Int, number: Int) {
         letterRepository.insertLetter(
             Letter(
                 text =  char,
                 row = row,
                 column = column,
-                id = row * 5 + column + 1
+                id = row * number + column + 1
             )
         )
     }

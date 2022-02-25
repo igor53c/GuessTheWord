@@ -1,5 +1,8 @@
 package com.ipcoding.guesstheword.feature.presentation.game
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -13,7 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ipcoding.guesstheword.feature.presentation.game.components.OneLetter
@@ -21,19 +26,43 @@ import com.ipcoding.guesstheword.ui.theme.AppTheme
 import com.ipcoding.guesstheword.feature.presentation.game.components.Keyboard
 import com.ipcoding.guesstheword.feature.presentation.util.Screen
 import com.ipcoding.guesstheword.ui.theme.Colors
+import com.ipcoding.guesstheword.R
 
 @Composable
 fun GameScreen(
     navController: NavController,
     viewModel: GameViewModel = hiltViewModel()
 ) {
-    val maxWidth = remember { mutableStateOf(0.dp) }
+    val defaultDimension = AppTheme.dimensions.default
+    val maxWidth = remember { mutableStateOf(defaultDimension) }
+    val style = remember { mutableStateOf(TextStyle.Default) }
+    val padding = remember { mutableStateOf(defaultDimension) }
     val currentLetter  = viewModel.currentLetter.value
     val currentRow  = viewModel.currentRow.value
     val letters  = viewModel.letters.value
     val wordIsCorrect  = viewModel.wordIsCorrect.value
     val guessingWord  = viewModel.guessingWord.value
+    val gameNumber  = viewModel.gameNumber.value
     val wordIsInDictionary  = viewModel.wordIsInDictionary.value
+
+    when(gameNumber) {
+        4 -> {
+            style.value = AppTheme.typography.h2
+            padding.value = AppTheme.dimensions.spaceExtraSmall
+        }
+        5 -> {
+            style.value = AppTheme.typography.h3
+            padding.value = AppTheme.dimensions.spaceExtraSmall
+        }
+        6 -> {
+            style.value = AppTheme.typography.h4
+            padding.value = AppTheme.dimensions.spaceSuperSmall
+        }
+        7 -> {
+            style.value = AppTheme.typography.h4
+            padding.value = AppTheme.dimensions.spaceSuperSmall
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -48,38 +77,57 @@ fun GameScreen(
         ) {
             maxWidth.value = this.maxWidth
 
-            LazyColumn(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-            ) {
-                items(letters.size / 5) { item1 ->
-                    LazyRow(modifier = Modifier) {
-                        items(5) { item2 ->
+            Column {
+                LazyColumn(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                ) {
+                    items(letters.size / gameNumber) { item1 ->
+                        LazyRow(modifier = Modifier) {
+                            items(gameNumber) { item2 ->
 
-                            if(letters.isNotEmpty()) {
+                                if(letters.isNotEmpty()) {
 
-                                val letter = letters[item1 * 5 + item2]
+                                    val letter = letters[item1 * gameNumber + item2]
 
-                                val borderColor =
-                                    if(currentLetter == item2 && currentRow == item1) {
-                                    if(letter.color == Colors.Error.toArgb())
-                                        Colors.Red else Colors.Gray
-                                } else Color(letter.color)
+                                    val borderColor =
+                                        if(currentLetter == item2 && currentRow == item1) {
+                                            if(letter.color == Colors.Error.toArgb())
+                                                Colors.Red else Colors.Gray
+                                        } else Color(letter.color)
 
-                                OneLetter(
-                                    text = letter.text,
-                                    textColor = Color(letter.color),
-                                    borderColor = borderColor,
-                                    size = maxWidth.value / 5,
-                                    style = AppTheme.typography.h3,
-                                    padding = AppTheme.dimensions.spaceExtraSmall,
-                                    borderWidth = AppTheme.dimensions.spaceExtraSmall,
-                                    shape = AppTheme.customShapes.roundedCornerShapeMedium,
-                                    onClick = { viewModel.selectCurrentLetter(item2, item1) }
-                                )
+                                    OneLetter(
+                                        text = letter.text,
+                                        textColor = Color(letter.color),
+                                        borderColor = borderColor,
+                                        size = maxWidth.value / gameNumber,
+                                        style = style.value,
+                                        padding = padding.value,
+                                        borderWidth = AppTheme.dimensions.spaceExtraSmall,
+                                        shape = AppTheme.customShapes.roundedCornerShapeMedium,
+                                        onClick = { viewModel.selectCurrentLetter(item2, item1) }
+                                    )
+                                }
                             }
                         }
                     }
+                }
+
+                Spacer(modifier = Modifier.height(AppTheme.dimensions.spaceMedium))
+
+                AnimatedVisibility(
+                    visible = !wordIsInDictionary,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.not_in_dictionary),
+                        style = AppTheme.typography.h4,
+                        color = AppTheme.colors.primary,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
                 }
             }
 

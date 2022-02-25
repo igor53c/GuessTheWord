@@ -9,5 +9,6 @@ data class AllUseCases (
     val checkIfWordIsCorrect: CheckIfWordIsCorrect,
     val checkAllLettersEntered: CheckAllLettersEntered,
     val getKeyboardLetters: GetKeyboardLetters,
-    val checkWordInDictionary: CheckWordInDictionary
+    val checkWordInDictionary: CheckWordInDictionary,
+    val saveRandomWord: SaveRandomWord
 )

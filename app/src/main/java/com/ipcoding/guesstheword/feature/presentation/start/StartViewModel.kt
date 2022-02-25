@@ -1,9 +1,10 @@
 package com.ipcoding.guesstheword.feature.presentation.start
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ipcoding.guesstheword.core.domain.preferences.Preferences
-import com.ipcoding.guesstheword.core.util.SetWords.SET_WORDS
 import com.ipcoding.guesstheword.feature.domain.use_case.AllUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,13 +16,17 @@ class StartViewModel @Inject constructor(
     private val allUseCases: AllUseCases
 ) : ViewModel() {
 
-    init {
-        viewModelScope.launch {
-            allUseCases.createDatabase()
-        }
+    private var _isDatabaseReady = mutableStateOf(false)
+    val isDatabaseReady: State<Boolean> = _isDatabaseReady
+
+    fun databaseIsReady() {
+        _isDatabaseReady.value = false
     }
 
-    fun saveRandomWord() {
-        preferences.saveRandomWord(SET_WORDS.random())
+    fun saveRandomWord(number: Int) {
+        allUseCases.saveRandomWord(number)
+        viewModelScope.launch {
+            _isDatabaseReady.value = allUseCases.createDatabase(number)
+        }
     }
 }
