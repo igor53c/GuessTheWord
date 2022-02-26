@@ -182,7 +182,6 @@ object OtherWordsFourLetters {
         "čiku",
         "čila",
         "čile",
-        "čile",
         "čili",
         "čilo",
         "čilu",
@@ -615,7 +614,6 @@ object OtherWordsFourLetters {
         "žreb",
         "žrec",
         "žuan",
-        "žuan",
         "žuci",
         "žude",
         "žudi",
@@ -639,6 +637,6 @@ object OtherWordsFourLetters {
         "žuće",
         "žući",
         "žuči",
-        "žvrk"
+        "žvrk",
     )
 }

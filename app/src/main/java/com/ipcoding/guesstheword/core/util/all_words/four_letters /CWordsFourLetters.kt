@@ -95,12 +95,9 @@ object CWordsFourLetters {
         "come",
         "crep",
         "crna",
-        "crna",
         "crne",
         "crni",
         "crno",
-        "crno",
-        "crnu",
         "crnu",
         "crpe",
         "crpi",
@@ -132,6 +129,6 @@ object CWordsFourLetters {
         "cvat",
         "cvek",
         "cvet",
-        "cvrc"
+        "cvrc",
     )
 }

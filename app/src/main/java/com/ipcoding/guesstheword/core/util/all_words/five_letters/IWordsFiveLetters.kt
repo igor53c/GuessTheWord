@@ -179,7 +179,6 @@ object IWordsFiveLetters {
         "irisa",
         "iroda",
         "irska",
-        "irska",
         "irske",
         "irski",
         "irsku",
@@ -231,7 +230,6 @@ object IWordsFiveLetters {
         "istok",
         "istom",
         "iston",
-        "istra",
         "istra",
         "istre",
         "istri",
@@ -356,6 +354,6 @@ object IWordsFiveLetters {
         "ižene",
         "ižica",
         "ižive",
-        "iživi"
+        "iživi",
     )
 }

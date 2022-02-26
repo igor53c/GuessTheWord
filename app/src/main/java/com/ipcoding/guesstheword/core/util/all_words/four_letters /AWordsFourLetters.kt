@@ -151,6 +151,6 @@ object AWordsFourLetters {
         "aćim",
         "ašik",
         "ašov",
-        "ažur"
+        "ažur",
     )
 }

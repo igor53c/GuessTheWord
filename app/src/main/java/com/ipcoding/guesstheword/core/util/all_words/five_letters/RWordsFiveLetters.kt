@@ -77,6 +77,7 @@ object RWordsFiveLetters {
         "rakić",
         "rakom",
         "rakov",
+        "rakun",
         "ralfa",
         "ralić",
         "ralja",
@@ -627,7 +628,6 @@ object RWordsFiveLetters {
         "ruska",
         "ruske",
         "ruski",
-        "ruski",
         "rusko",
         "rusku",
         "rusoa",
@@ -695,6 +695,6 @@ object RWordsFiveLetters {
         "rđavi",
         "rđavo",
         "rđavu",
-        "ržući"
+        "ržući",
     )
 }

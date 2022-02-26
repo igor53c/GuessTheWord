@@ -88,6 +88,8 @@ class CheckIfWordIsCorrect(
             }
         }
 
+        if(wordIsCorrect) delay((DURATION_LETTER_ANIMATION / 3).toLong())
+
         return wordIsCorrect
     }
 }

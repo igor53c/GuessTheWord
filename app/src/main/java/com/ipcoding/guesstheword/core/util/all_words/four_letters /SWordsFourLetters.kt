@@ -45,7 +45,6 @@ object SWordsFourLetters {
         "sans",
         "sant",
         "sanu",
-        "sanu",
         "sapa",
         "sape",
         "sapi",
@@ -123,7 +122,6 @@ object SWordsFourLetters {
         "sele",
         "self",
         "seli",
-        "selo",
         "selo",
         "selu",
         "sema",
@@ -474,7 +472,6 @@ object SWordsFourLetters {
         "supi",
         "supu",
         "sura",
-        "sura",
         "sure",
         "suri",
         "suro",
@@ -518,6 +515,6 @@ object SWordsFourLetters {
         "svom",
         "svrh",
         "svud",
-        "szup"
+        "szup",
     )
 }

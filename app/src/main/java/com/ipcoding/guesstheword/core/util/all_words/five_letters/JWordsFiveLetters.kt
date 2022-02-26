@@ -16,6 +16,7 @@ object JWordsFiveLetters {
         "jadnu",
         "jadom",
         "jadra",
+        "jadro",
         "jadru",
         "jagić",
         "jagma",
@@ -87,7 +88,6 @@ object JWordsFiveLetters {
         "janka",
         "janke",
         "janko",
-        "janko",
         "janku",
         "janom",
         "janos",
@@ -104,7 +104,6 @@ object JWordsFiveLetters {
         "jarac",
         "jarad",
         "jarai",
-        "jarak",
         "jarak",
         "jaram",
         "jaran",
@@ -403,11 +402,9 @@ object JWordsFiveLetters {
         "jučer",
         "južan",
         "južna",
-        "južna",
         "južne",
         "južni",
-        "južni",
         "južno",
-        "južnu"
+        "južnu",
     )
 }

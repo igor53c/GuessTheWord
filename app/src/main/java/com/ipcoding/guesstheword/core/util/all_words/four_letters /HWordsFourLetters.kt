@@ -69,7 +69,6 @@ object HWordsFourLetters {
         "heps",
         "hera",
         "herc",
-        "herc",
         "herd",
         "here",
         "heri",
@@ -196,6 +195,6 @@ object HWordsFourLetters {
         "huči",
         "huču",
         "hvar",
-        "hvat"
+        "hvat",
     )
 }

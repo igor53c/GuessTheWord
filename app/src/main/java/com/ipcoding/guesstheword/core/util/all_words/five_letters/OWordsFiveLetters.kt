@@ -533,7 +533,6 @@ object OWordsFiveLetters {
         "opšta",
         "opšte",
         "opšti",
-        "opšti",
         "opštu",
         "oraha",
         "orahe",
@@ -691,7 +690,6 @@ object OWordsFiveLetters {
         "otela",
         "otele",
         "oteli",
-        "otelo",
         "otelo",
         "otera",
         "oteta",
@@ -887,6 +885,6 @@ object OWordsFiveLetters {
         "ožeže",
         "ožica",
         "ožive",
-        "oživi"
+        "oživi",
     )
 }

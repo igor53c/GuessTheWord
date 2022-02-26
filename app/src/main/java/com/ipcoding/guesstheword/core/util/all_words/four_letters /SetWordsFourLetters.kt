@@ -802,7 +802,6 @@ object SetWordsFourLetters {
         "vlas",
         "voda",
         "volt",
-        "volt",
         "voće",
         "vođa",
         "vožd",
@@ -903,6 +902,6 @@ object SetWordsFourLetters {
         "žulj",
         "žuta",
         "žuto",
-        "žuća"
+        "žuća",
     )
 }

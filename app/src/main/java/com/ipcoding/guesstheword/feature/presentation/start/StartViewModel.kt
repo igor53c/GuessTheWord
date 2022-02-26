@@ -19,8 +19,23 @@ class StartViewModel @Inject constructor(
     private var _isDatabaseReady = mutableStateOf(false)
     val isDatabaseReady: State<Boolean> = _isDatabaseReady
 
+    private var isDarkTheme = mutableStateOf(false)
+
+    init {
+        loadIsDarkTheme()
+    }
+
     fun databaseIsReady() {
         _isDatabaseReady.value = false
+    }
+
+    private fun loadIsDarkTheme() {
+        isDarkTheme.value = preferences.loadIsDarkTheme()
+    }
+
+   fun saveIsDarkTheme() {
+        isDarkTheme.value = !isDarkTheme.value
+        preferences.saveIsDarkTheme(isDarkTheme.value)
     }
 
     fun saveRandomWord(number: Int) {

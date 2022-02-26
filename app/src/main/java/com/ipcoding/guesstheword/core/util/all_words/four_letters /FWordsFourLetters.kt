@@ -69,7 +69,6 @@ object FWordsFourLetters {
         "fida",
         "fide",
         "fifa",
-        "fifa",
         "fife",
         "fifi",
         "fifu",
@@ -171,6 +170,6 @@ object FWordsFourLetters {
         "furo",
         "futa",
         "futo",
-        "fuše"
+        "fuše",
     )
 }

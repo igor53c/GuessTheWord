@@ -8,7 +8,6 @@ object AWordsFiveLetters {
         "aberi",
         "aberu",
         "adama",
-        "adama",
         "adame",
         "adams",
         "adamu",
@@ -308,6 +307,6 @@ object AWordsFiveLetters {
         "ačeći",
         "ačiti",
         "ašova",
-        "ašovi"
+        "ašovi",
     )
 }

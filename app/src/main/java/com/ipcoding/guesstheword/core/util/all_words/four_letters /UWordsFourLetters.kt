@@ -147,7 +147,6 @@ object UWordsFourLetters {
         "uput",
         "ural",
         "uran",
-        "uran",
         "urar",
         "uras",
         "urda",
@@ -279,6 +278,6 @@ object UWordsFourLetters {
         "užih",
         "užim",
         "užoj",
-        "užom"
+        "užom",
     )
 }

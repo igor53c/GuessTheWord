@@ -582,7 +582,6 @@ object GWordsFiveLetters {
         "grčio",
         "grčić",
         "grčka",
-        "grčka",
         "grčke",
         "grčki",
         "grčko",
@@ -686,6 +685,6 @@ object GWordsFiveLetters {
         "gvido",
         "gviri",
         "gđica",
-        "gđice"
+        "gđice",
     )
 }

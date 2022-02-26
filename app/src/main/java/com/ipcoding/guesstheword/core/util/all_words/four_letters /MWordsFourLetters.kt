@@ -24,7 +24,6 @@ object MWordsFourLetters {
         "maić",
         "maja",
         "maje",
-        "maje",
         "maji",
         "majk",
         "majl",
@@ -35,9 +34,7 @@ object MWordsFourLetters {
         "maki",
         "maks",
         "mala",
-        "mala",
         "male",
-        "mali",
         "mali",
         "malj",
         "malo",
@@ -121,7 +118,6 @@ object MWordsFourLetters {
         "mejd",
         "mejl",
         "mejn",
-        "meka",
         "meka",
         "meke",
         "meki",
@@ -394,6 +390,6 @@ object MWordsFourLetters {
         "muža",
         "muže",
         "muži",
-        "mužu"
+        "mužu",
     )
 }

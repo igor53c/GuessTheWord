@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ipcoding.guesstheword.core.domain.preferences.Preferences
 import com.ipcoding.guesstheword.feature.domain.use_case.AllUseCases
+import com.ipcoding.guesstheword.feature.domain.util.Stats
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,8 +17,8 @@ class StatisticsViewModel @Inject constructor(
     private val allUseCases: AllUseCases
 ) : ViewModel() {
 
-    private var _stats = mutableStateOf<List<Float>>(emptyList())
-    val stats: State<List<Float>> = _stats
+    private var _stats = mutableStateOf<List<Stats>>(emptyList())
+    val stats: State<List<Stats>> = _stats
 
     init {
         getStats()

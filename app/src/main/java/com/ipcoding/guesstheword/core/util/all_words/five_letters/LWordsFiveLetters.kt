@@ -134,7 +134,6 @@ object LWordsFiveLetters {
         "lavom",
         "lavor",
         "lavov",
-        "lavov",
         "lavra",
         "lavre",
         "lavri",
@@ -425,7 +424,6 @@ object LWordsFiveLetters {
         "livić",
         "livna",
         "livno",
-        "livno",
         "livnu",
         "livra",
         "lizan",
@@ -680,6 +678,6 @@ object LWordsFiveLetters {
         "luđih",
         "luđim",
         "lušić",
-        "lužan"
+        "lužan",
     )
 }

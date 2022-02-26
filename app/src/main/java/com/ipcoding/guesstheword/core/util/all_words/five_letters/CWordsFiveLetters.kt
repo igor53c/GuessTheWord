@@ -168,7 +168,6 @@ object CWordsFiveLetters {
         "crknu",
         "crkoh",
         "crkva",
-        "crkva",
         "crkve",
         "crkvi",
         "crkvo",
@@ -262,6 +261,6 @@ object CWordsFiveLetters {
         "cvite",
         "cvrka",
         "cvrče",
-        "cvrči"
+        "cvrči",
     )
 }

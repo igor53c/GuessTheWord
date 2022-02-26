@@ -293,6 +293,6 @@ object FWordsFiveLetters {
         "futog",
         "futur",
         "fućka",
-        "fušer"
+        "fušer",
     )
 }

@@ -268,7 +268,6 @@ object TWordsFiveLetters {
         "tesač",
         "tesko",
         "tesla",
-        "tesla",
         "tesle",
         "tesli",
         "teslo",
@@ -645,7 +644,6 @@ object TWordsFiveLetters {
         "troga",
         "troha",
         "troja",
-        "troja",
         "troje",
         "troji",
         "trola",
@@ -790,7 +788,6 @@ object TWordsFiveLetters {
         "turom",
         "turov",
         "turče",
-        "turče",
         "turči",
         "tusić",
         "tuter",
@@ -869,6 +866,6 @@ object TWordsFiveLetters {
         "tvrđe",
         "tvrđi",
         "tvrđo",
-        "tvrđu"
+        "tvrđu",
     )
 }

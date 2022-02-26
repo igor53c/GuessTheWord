@@ -48,7 +48,6 @@ object RWordsFourLetters {
         "ralo",
         "ralu",
         "rama",
-        "rama",
         "rame",
         "rami",
         "ramo",
@@ -186,7 +185,6 @@ object RWordsFourLetters {
         "rime",
         "rimi",
         "rimu",
-        "rimu",
         "rina",
         "rine",
         "ring",
@@ -237,7 +235,6 @@ object RWordsFourLetters {
         "rode",
         "rodi",
         "rodu",
-        "roga",
         "roga",
         "roge",
         "rogl",
@@ -362,6 +359,6 @@ object RWordsFourLetters {
         "rzzo",
         "rđav",
         "rđom",
-        "ršum"
+        "ršum",
     )
 }

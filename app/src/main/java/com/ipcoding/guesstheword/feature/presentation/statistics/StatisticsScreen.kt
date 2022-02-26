@@ -24,21 +24,19 @@ fun StatisticsScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(
-                top = AppTheme.dimensions.spaceSmall,
+                top = AppTheme.dimensions.spaceMedium,
                 start = AppTheme.dimensions.spaceSmall,
                 end = AppTheme.dimensions.spaceSmall
             )
     ) {
         Text(
-            text = stringResource(id = R.string.your_score),
+            text = stringResource(id = R.string.guessing_success),
             color = AppTheme.colors.primary,
             style = AppTheme.typography.h5,
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
         )
-
-        Spacer(modifier = Modifier.height(AppTheme.dimensions.spaceMedium))
 
         LazyColumn(
             modifier = Modifier
@@ -49,7 +47,32 @@ fun StatisticsScreen(
                 if(stats.isNotEmpty()) {
                     OneRow(
                         number = item + 4,
-                        progress = stats[item]
+                        progress = stats[item].guessingSuccess
+                    )
+                }
+            }
+        }
+
+        Text(
+            text = stringResource(id = R.string.average_number_attempts),
+            color = AppTheme.colors.primary,
+            style = AppTheme.typography.h5,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+
+        LazyColumn(
+            modifier = Modifier
+                .weight(1f)
+        ) {
+            items(4) { item ->
+
+                if(stats.isNotEmpty()) {
+                    OneRow(
+                        number = item + 4,
+                        progress = stats[item].numberAttempts,
+                        isNumberAttempts = true
                     )
                 }
             }

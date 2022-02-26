@@ -20,16 +20,26 @@ import kotlin.math.round
 @Composable
 fun OneRow(
     number: Int,
-    progress: Float
+    progress: Float,
+    isNumberAttempts: Boolean = false
 ) {
     val targetProgress = remember { mutableStateOf(0f) }
     val animatedProgress = animateFloatAsState(targetValue = targetProgress.value)
+    val maxProgress = remember { mutableStateOf(1f - (progress - 1f) / number.toFloat()) }
 
     LaunchedEffect(true) {
-        delay(200)
-        while (targetProgress.value < progress) {
-            targetProgress.value += 0.001f
-            delay(1)
+        if(isNumberAttempts && progress != 0f) {
+            delay(200)
+            while (targetProgress.value < maxProgress.value) {
+                targetProgress.value += 0.002f
+                delay(1)
+            }
+        } else {
+            delay(200)
+            while (targetProgress.value < progress) {
+                targetProgress.value += 0.002f
+                delay(1)
+            }
         }
     }
 
@@ -55,13 +65,26 @@ fun OneRow(
             color = AppTheme.colors.primary
         )
 
-        Text(
-            text = "${round(animatedProgress.value * 100).toInt()}%",
-            color = AppTheme.colors.primary,
-            style = AppTheme.typography.h5,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .width(AppTheme.dimensions.spaceLarge)
-        )
+        if(isNumberAttempts) {
+            Text(
+                text = if(animatedProgress.value == 0f)
+                    String.format("%.1f", animatedProgress.value) else
+                        String.format("%.1f", number * (1f - animatedProgress.value) + 1f),
+                color = AppTheme.colors.primary,
+                style = AppTheme.typography.h5,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .width(AppTheme.dimensions.spaceExtraLarge)
+            )
+        } else {
+            Text(
+                text = "${round(animatedProgress.value * 100).toInt()}%",
+                color = AppTheme.colors.primary,
+                style = AppTheme.typography.h5,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .width(AppTheme.dimensions.spaceExtraLarge)
+            )
+        }
     }
 }

@@ -350,6 +350,6 @@ object HWordsFiveLetters {
         "hvara",
         "hvaru",
         "hvata",
-        "hvati"
+        "hvati",
     )
 }

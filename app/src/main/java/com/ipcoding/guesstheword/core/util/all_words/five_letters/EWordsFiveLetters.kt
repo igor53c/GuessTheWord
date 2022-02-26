@@ -210,6 +210,6 @@ object EWordsFiveLetters {
         "ezope",
         "ećima",
         "ešker",
-        "ežena"
+        "ežena",
     )
 }

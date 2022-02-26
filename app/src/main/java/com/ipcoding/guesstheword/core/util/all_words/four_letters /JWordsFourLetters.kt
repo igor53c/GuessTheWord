@@ -60,7 +60,6 @@ object JWordsFourLetters {
         "javu",
         "jaza",
         "jazu",
-        "jazu",
         "jaće",
         "jaću",
         "jača",
@@ -220,6 +219,6 @@ object JWordsFourLetters {
         "juće",
         "juče",
         "juže",
-        "jžtp"
+        "jžtp",
     )
 }

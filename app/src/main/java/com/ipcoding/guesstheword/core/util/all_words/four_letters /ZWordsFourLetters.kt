@@ -68,7 +68,6 @@ object ZWordsFourLetters {
         "zeri",
         "zeru",
         "zeta",
-        "zeta",
         "zete",
         "zeti",
         "zetu",
@@ -168,6 +167,6 @@ object ZWordsFourLetters {
         "zvek",
         "zver",
         "zvon",
-        "zvuk"
+        "zvuk",
     )
 }

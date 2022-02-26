@@ -7,7 +7,10 @@
     <string name="ok">Ok</string>
     <string name="backspace_icon">Backspace icon</string>
     <string name="enter_icon">Enter icon</string>
+    <string name="change_mode_icon">Change mode icon</string>
     <string name="not_in_dictionary">Reč nije u rečniku</string>
     <string name="guessing_word">Tražena reč je:</string>
-    <string name="your_score">Tvoj skor</string>
+    <string name="guessing_success">Uspešnost pogađanja</string>
+    <string name="average_number_attempts">Prosečan broj pokušaja</string>
+    <string name="choose_game">Izaberi igru</string>
 </resources>

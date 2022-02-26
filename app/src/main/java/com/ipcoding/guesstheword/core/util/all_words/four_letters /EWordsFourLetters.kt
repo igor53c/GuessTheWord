@@ -86,7 +86,6 @@ object EWordsFourLetters {
         "erol",
         "erom",
         "eros",
-        "eros",
         "erpa",
         "ersa",
         "erto",
@@ -123,6 +122,6 @@ object EWordsFourLetters {
         "ečka",
         "ečke",
         "ečki",
-        "ežen"
+        "ežen",
     )
 }

@@ -114,7 +114,6 @@ object PWordsFourLetters {
         "pero",
         "pert",
         "peru",
-        "peru",
         "peta",
         "pete",
         "peti",
@@ -174,7 +173,6 @@ object PWordsFourLetters {
         "piti",
         "pito",
         "pitu",
-        "piva",
         "piva",
         "pive",
         "pivi",
@@ -313,7 +311,6 @@ object PWordsFourLetters {
         "prva",
         "prve",
         "prvi",
-        "prvi",
         "prvo",
         "prvu",
         "prže",
@@ -377,6 +374,6 @@ object PWordsFourLetters {
         "pušu",
         "puža",
         "puže",
-        "pužu"
+        "pužu",
     )
 }

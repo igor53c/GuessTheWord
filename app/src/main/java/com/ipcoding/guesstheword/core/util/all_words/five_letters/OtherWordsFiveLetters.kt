@@ -105,7 +105,6 @@ object OtherWordsFiveLetters {
         "ćušne",
         "ćušnu",
         "čabar",
-        "čabar",
         "čabra",
         "čabre",
         "čabro",
@@ -289,7 +288,6 @@ object OtherWordsFiveLetters {
         "češeš",
         "češić",
         "češka",
-        "češka",
         "češke",
         "češki",
         "češko",
@@ -339,7 +337,6 @@ object OtherWordsFiveLetters {
         "čipom",
         "čirak",
         "čirom",
-        "čista",
         "čista",
         "čiste",
         "čisti",
@@ -1312,6 +1309,6 @@ object OtherWordsFiveLetters {
         "žvale",
         "žvalu",
         "žvaće",
-        "žvaću"
+        "žvaću",
     )
 }

@@ -170,7 +170,6 @@ object LWordsFourLetters {
         "life",
         "lift",
         "liga",
-        "liga",
         "lige",
         "ligi",
         "ligu",
@@ -207,7 +206,6 @@ object LWordsFourLetters {
         "linu",
         "linč",
         "lion",
-        "lipa",
         "lipa",
         "lipe",
         "lipi",
@@ -325,7 +323,6 @@ object LWordsFourLetters {
         "lujo",
         "luju",
         "luka",
-        "luka",
         "luke",
         "luki",
         "luko",
@@ -356,6 +353,6 @@ object LWordsFourLetters {
         "luđa",
         "luđe",
         "luđi",
-        "luđu"
+        "luđu",
     )
 }

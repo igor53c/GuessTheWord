@@ -190,9 +190,7 @@ object OWordsFourLetters {
         "orvs",
         "orđe",
         "osam",
-        "osam",
         "osce",
-        "osek",
         "osek",
         "oset",
         "osim",
@@ -287,6 +285,6 @@ object OWordsFourLetters {
         "očnu",
         "očuh",
         "ođek",
-        "ožeg"
+        "ožeg",
     )
 }

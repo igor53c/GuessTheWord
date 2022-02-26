@@ -161,9 +161,7 @@ object MWordsFiveLetters {
         "marke",
         "marki",
         "marko",
-        "marko",
         "marks",
-        "marku",
         "marku",
         "marna",
         "marne",
@@ -391,7 +389,6 @@ object MWordsFiveLetters {
         "mernu",
         "merom",
         "mesar",
-        "mesec",
         "mesec",
         "mesim",
         "mesio",
@@ -637,7 +634,6 @@ object MWordsFiveLetters {
         "mjeru",
         "mlaca",
         "mlada",
-        "mlada",
         "mlade",
         "mladi",
         "mlado",
@@ -651,7 +647,6 @@ object MWordsFiveLetters {
         "mlate",
         "mlati",
         "mlave",
-        "mlavi",
         "mlavi",
         "mlavu",
         "mlaza",
@@ -1049,6 +1044,6 @@ object MWordsFiveLetters {
         "mužem",
         "mužik",
         "mužić",
-        "mužom"
+        "mužom",
     )
 }

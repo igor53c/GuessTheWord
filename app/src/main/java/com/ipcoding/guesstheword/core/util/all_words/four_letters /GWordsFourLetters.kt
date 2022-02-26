@@ -156,12 +156,10 @@ object GWordsFourLetters {
         "gong",
         "goni",
         "gora",
-        "gora",
         "gord",
         "gore",
         "gori",
         "goro",
-        "goru",
         "goru",
         "gosa",
         "gosi",
@@ -299,6 +297,6 @@ object GWordsFourLetters {
         "guši",
         "gušo",
         "gušu",
-        "gven"
+        "gven",
     )
 }

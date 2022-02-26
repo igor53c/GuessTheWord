@@ -4,7 +4,6 @@ object DWordsFourLetters {
 
     val D_WORDS_FOUR_LETTERS = listOf(
         "daba",
-        "daba",
         "dabi",
         "dabl",
         "daca",
@@ -211,7 +210,6 @@ object DWordsFourLetters {
         "doli",
         "dolu",
         "doma",
-        "doma",
         "dome",
         "domu",
         "dona",
@@ -282,13 +280,10 @@ object DWordsFourLetters {
         "duel",
         "duet",
         "duga",
-        "duga",
         "duge",
         "dugi",
         "dugo",
-        "dugo",
         "dugu",
-        "duha",
         "duha",
         "duhu",
         "duić",
@@ -335,6 +330,6 @@ object DWordsFourLetters {
         "džip",
         "dživ",
         "džon",
-        "džul"
+        "džul",
     )
 }

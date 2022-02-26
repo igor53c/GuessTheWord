@@ -504,9 +504,7 @@ object DWordsFiveLetters {
         "donin",
         "donio",
         "donja",
-        "donja",
         "donje",
-        "donji",
         "donji",
         "donju",
         "donka",
@@ -867,6 +865,6 @@ object DWordsFiveLetters {
         "džube",
         "džudo",
         "džula",
-        "džuli"
+        "džuli",
     )
 }

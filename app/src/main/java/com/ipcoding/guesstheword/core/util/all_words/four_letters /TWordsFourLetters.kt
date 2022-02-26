@@ -165,7 +165,6 @@ object TWordsFourLetters {
         "tira",
         "tiru",
         "tisa",
-        "tisa",
         "tise",
         "tisi",
         "tiso",
@@ -206,7 +205,6 @@ object TWordsFourLetters {
         "tola",
         "tole",
         "toli",
-        "toma",
         "toma",
         "tome",
         "tomi",
@@ -368,6 +366,6 @@ object TWordsFourLetters {
         "tvoj",
         "tvom",
         "tvor",
-        "tvrd"
+        "tvrd",
     )
 }

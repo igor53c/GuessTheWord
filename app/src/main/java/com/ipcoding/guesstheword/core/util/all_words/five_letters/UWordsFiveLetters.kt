@@ -544,7 +544,6 @@ object UWordsFiveLetters {
         "uskok",
         "uskom",
         "uskrs",
-        "uskrs",
         "usled",
         "uslov",
         "usnem",
@@ -572,7 +571,6 @@ object UWordsFiveLetters {
         "ustah",
         "ustaj",
         "ustao",
-        "ustav",
         "ustav",
         "ustić",
         "ustuk",
@@ -628,6 +626,7 @@ object UWordsFiveLetters {
         "utore",
         "utovi",
         "utoči",
+        "utrka",
         "utrke",
         "utrli",
         "utrne",
@@ -725,7 +724,6 @@ object UWordsFiveLetters {
         "uzdam",
         "uzdao",
         "uzdaš",
-        "uzdin",
         "uzdin",
         "uzdom",
         "uzduž",
@@ -860,6 +858,6 @@ object UWordsFiveLetters {
         "uživi",
         "uživo",
         "užiće",
-        "užiže"
+        "užiže",
     )
 }

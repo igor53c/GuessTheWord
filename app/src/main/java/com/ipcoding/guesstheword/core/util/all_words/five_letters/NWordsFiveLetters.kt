@@ -350,7 +350,6 @@ object NWordsFiveLetters {
         "nigda",
         "nigde",
         "niger",
-        "niger",
         "night",
         "nigro",
         "nihad",
@@ -601,6 +600,6 @@ object NWordsFiveLetters {
         "nužni",
         "nužno",
         "nužnu",
-        "nzija"
+        "nzija",
     )
 }

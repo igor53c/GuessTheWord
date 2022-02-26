@@ -166,6 +166,6 @@ object IWordsFourLetters {
         "ište",
         "išti",
         "išto",
-        "ištu"
+        "ištu",
     )
 }

@@ -45,7 +45,6 @@ object ZWordsFiveLetters {
         "zakla",
         "zakle",
         "zakon",
-        "zakon",
         "zakoč",
         "zakup",
         "zalaz",
@@ -80,7 +79,6 @@ object ZWordsFiveLetters {
         "zaove",
         "zaovi",
         "zaovu",
-        "zapad",
         "zapad",
         "zapah",
         "zapao",
@@ -495,6 +493,6 @@ object ZWordsFiveLetters {
         "zvuke",
         "zvuku",
         "zvuče",
-        "zvuči"
+        "zvuči",
     )
 }

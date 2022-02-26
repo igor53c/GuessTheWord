@@ -68,7 +68,6 @@ object VWordsFourLetters {
         "veju",
         "veka",
         "veku",
-        "veku",
         "vela",
         "vele",
         "veli",
@@ -183,7 +182,6 @@ object VWordsFourLetters {
         "viđa",
         "viđe",
         "viša",
-        "viša",
         "više",
         "viši",
         "višu",
@@ -215,7 +213,6 @@ object VWordsFourLetters {
         "volf",
         "voli",
         "volk",
-        "volt",
         "volt",
         "volu",
         "volš",
@@ -291,7 +288,6 @@ object VWordsFourLetters {
         "vujo",
         "vuju",
         "vuka",
-        "vuka",
         "vuke",
         "vuko",
         "vuku",
@@ -306,6 +302,6 @@ object VWordsFourLetters {
         "vuče",
         "vuči",
         "vučo",
-        "vuču"
+        "vuču",
     )
 }
