@@ -2,7 +2,6 @@ package com.ipcoding.guesstheword.feature.presentation.game.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -11,13 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.window.DialogProperties
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 import com.ipcoding.guesstheword.R
 
 @Composable
-fun QuestionDialog(
-    currentWord: String,
+fun ExitQuestion(
     onNoClick: () -> Unit,
     onYesClick: () -> Unit
 ) {
@@ -30,8 +27,8 @@ fun QuestionDialog(
             .padding(AppTheme.dimensions.spaceMedium)
     ) {
         Text(
-            text = stringResource(id = R.string.your_word) + "  " + currentWord,
-            maxLines = 1,
+            text = stringResource(id = R.string.leave_game),
+            maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             color = AppTheme.colors.background,
             style = AppTheme.typography.h5,

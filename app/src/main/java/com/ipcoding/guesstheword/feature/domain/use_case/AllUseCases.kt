@@ -10,5 +10,7 @@ data class AllUseCases (
     val checkAllLettersEntered: CheckAllLettersEntered,
     val getKeyboardLetters: GetKeyboardLetters,
     val checkWordInDictionary: CheckWordInDictionary,
-    val saveRandomWord: SaveRandomWord
+    val saveRandomWord: SaveRandomWord,
+    val insertGame: InsertGame,
+    val getStats: GetStats
 )

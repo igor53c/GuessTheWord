@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">GuessTheWord</string>
 
-    <string name="your_word">Tvoja reč:</string>
+    <string name="leave_game">Želiš da napustiš igru?</string>
     <string name="yes">Da</string>
     <string name="no">Ne</string>
+    <string name="ok">Ok</string>
     <string name="backspace_icon">Backspace icon</string>
     <string name="enter_icon">Enter icon</string>
     <string name="not_in_dictionary">Reč nije u rečniku</string>
+    <string name="guessing_word">Tražena reč je:</string>
+    <string name="your_score">Tvoj skor</string>
 </resources>

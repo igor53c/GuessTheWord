@@ -28,8 +28,11 @@ class GameViewModel @Inject constructor(
     private var _guessingWord = mutableStateOf("")
     val guessingWord: State<String> = _guessingWord
 
-    private var _wordIsCorrect = mutableStateOf(false)
-    val wordIsCorrect: State<Boolean> = _wordIsCorrect
+    private var _isWordCorrect = mutableStateOf(false)
+    val isWordCorrect: State<Boolean> = _isWordCorrect
+
+    private var _isEndOfGame  = mutableStateOf(false)
+    val isEndOfGame: State<Boolean> = _isEndOfGame
 
     private var pressedEnter = mutableStateOf(false)
 
@@ -137,14 +140,29 @@ class GameViewModel @Inject constructor(
             _currentLetter.value = 0
             _currentRow.value = row + 1
         }
-        _wordIsCorrect.value = allUseCases.checkIfWordIsCorrect(
+        if(allUseCases.checkIfWordIsCorrect(
             guessingWord = guessingWord.value,
             row = row,
             number = gameNumber.value
-        )
+        )) {
+            allUseCases.insertGame(
+                typeGameNumber = gameNumber.value,
+                guessingWord = guessingWord.value,
+                isVictory = true,
+                numberAttempts = row + 1,
+            )
+            _isWordCorrect.value = true
+            _isEndOfGame.value = true
+        }
         if(row == (gameNumber.value - 1)) {
+            allUseCases.insertGame(
+                typeGameNumber = gameNumber.value,
+                guessingWord = guessingWord.value,
+                isVictory = false,
+                numberAttempts = row + 1,
+            )
             _currentLetter.value = -1
-            _wordIsCorrect.value = true
+            _isEndOfGame.value = true
         }
     }
 
@@ -159,6 +177,10 @@ class GameViewModel @Inject constructor(
         if(row == currentRow.value) {
             _currentLetter.value = column
         }
+    }
+
+    fun resetIsEndOfGame() {
+        _isEndOfGame.value = false
     }
 
     private fun getLetters() {

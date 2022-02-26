@@ -7,7 +7,9 @@ import androidx.room.Room
 import com.ipcoding.guesstheword.core.data.DefaultPreferences
 import com.ipcoding.guesstheword.core.domain.preferences.Preferences
 import com.ipcoding.guesstheword.feature.data.data_source.AppDatabase
+import com.ipcoding.guesstheword.feature.data.repository.GameRepositoryImpl
 import com.ipcoding.guesstheword.feature.data.repository.LetterRepositoryImpl
+import com.ipcoding.guesstheword.feature.domain.repository.GameRepository
 import com.ipcoding.guesstheword.feature.domain.repository.LetterRepository
 import com.ipcoding.guesstheword.feature.domain.use_case.*
 import dagger.Module
@@ -38,6 +40,12 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideGameRepository(db: AppDatabase): GameRepository {
+        return GameRepositoryImpl(db.gameDao)
+    }
+
+    @Provides
+    @Singleton
     fun provideSharedPreferences(app: Application): SharedPreferences {
         return app.getSharedPreferences("shared_pref", Context.MODE_PRIVATE)
     }
@@ -52,6 +60,7 @@ object AppModule {
     @Singleton
     fun provideUseCases(
         letterRepository: LetterRepository,
+        gameRepository: GameRepository,
         preferences: Preferences
     ): AllUseCases {
         return AllUseCases(
@@ -64,7 +73,9 @@ object AppModule {
             checkAllLettersEntered = CheckAllLettersEntered(letterRepository),
             getKeyboardLetters = GetKeyboardLetters(letterRepository),
             checkWordInDictionary = CheckWordInDictionary(),
-            saveRandomWord = SaveRandomWord(preferences)
+            saveRandomWord = SaveRandomWord(preferences),
+            insertGame = InsertGame(gameRepository),
+            getStats = GetStats(gameRepository)
         )
     }
 }
