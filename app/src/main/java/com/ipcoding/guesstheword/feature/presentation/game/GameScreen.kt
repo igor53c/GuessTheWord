@@ -102,6 +102,7 @@ fun GameScreen(
                         handleOnBackPressed.value -> {
                             ExitQuestion(
                                 onYesClick = {
+                                    isScreenVisible.value = false
                                     handleOnBackPressed.value = false
                                     navController.navigate(Screen.StartScreen.route)
                                 },

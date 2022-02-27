@@ -30,8 +30,7 @@ fun ChooseGameButton(
                 .fillMaxWidth()
                 .padding(AppTheme.dimensions.spaceMedium),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = AppTheme.colors.primary,
-                contentColor = AppTheme.colors.background
+                backgroundColor = AppTheme.colors.primary
             ),
             shape = AppTheme.customShapes.roundedCornerShapeMedium
         ) {

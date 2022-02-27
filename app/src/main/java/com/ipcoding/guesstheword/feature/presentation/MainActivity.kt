@@ -1,13 +1,12 @@
 package com.ipcoding.guesstheword.feature.presentation
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -19,8 +18,6 @@ import com.ipcoding.guesstheword.feature.presentation.statistics.StatisticsScree
 import com.ipcoding.guesstheword.feature.presentation.util.Screen
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -28,20 +25,31 @@ class MainActivity : ComponentActivity() {
 
     @Inject lateinit var preferences: Preferences
 
+    private val isStatusBarVisibleLiveData = MutableLiveData(false)
+
+    override fun onResume() {
+        super.onResume()
+        isStatusBarVisibleLiveData.value = false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
 
             val darkTheme = remember { mutableStateOf(preferences.loadIsDarkTheme()) }
+            val navController = rememberNavController()
+            val systemUiController = rememberSystemUiController()
+            systemUiController.isStatusBarVisible = false
+
+            isStatusBarVisibleLiveData.observeForever {
+                systemUiController.isStatusBarVisible = it
+            }
 
             AppTheme(darkTheme = darkTheme.value) {
                 Surface(
                     color = AppTheme.colors.background
                 ) {
-                    val navController = rememberNavController()
-                    val systemUiController = rememberSystemUiController()
-                    systemUiController.isStatusBarVisible = false
                     NavHost(
                         navController = navController,
                         startDestination = Screen.StartScreen.route

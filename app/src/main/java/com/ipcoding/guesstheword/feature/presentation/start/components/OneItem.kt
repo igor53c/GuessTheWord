@@ -25,8 +25,7 @@ fun OneItem(
             onClick =  onClick,
             modifier = Modifier.width(AppTheme.dimensions.spaceSuperLarge * 2),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = AppTheme.colors.primary,
-                contentColor = AppTheme.colors.background
+                backgroundColor = AppTheme.colors.primary
             ),
             shape = AppTheme.customShapes.roundedCornerShapeMedium
         ) {

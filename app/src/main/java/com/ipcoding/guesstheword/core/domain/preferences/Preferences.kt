@@ -10,6 +10,6 @@ interface Preferences {
 
     companion object {
         const val RANDOM_WORD = "random_word"
-        const val IS_DARK_THEME = "random_word"
+        const val IS_DARK_THEME = "is_dark_theme"
     }
 }

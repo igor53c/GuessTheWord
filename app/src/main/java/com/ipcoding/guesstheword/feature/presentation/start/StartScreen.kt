@@ -22,6 +22,7 @@ fun StartScreen (
     onChangeThemeClick: () -> Unit
 ) {
     val isDatabaseReady = viewModel.isDatabaseReady.value
+    val isDarkTheme = viewModel.isDarkTheme.value
 
     Column(
         modifier = Modifier
@@ -36,7 +37,8 @@ fun StartScreen (
                 viewModel.saveIsDarkTheme()
                 onChangeThemeClick()
             },
-            onStatsClick = { navController.navigate(Screen.StatisticsScreen.route) }
+            onStatsClick = { navController.navigate(Screen.StatisticsScreen.route) },
+            isDarkTheme = isDarkTheme
         )
 
         AnimatedVisibility(
@@ -45,28 +47,12 @@ fun StartScreen (
             exit = fadeOut() + slideOutHorizontally(targetOffsetX = { -it / 2}),
             modifier = Modifier.weight(1f),
         ) {
-            Column(
+            OneItem(
                 modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                OneItem(
-                    modifier = Modifier.weight(1f),
-                    text = "4 x 4",
-                    onClick = { viewModel.saveRandomWord(4) }
-                )
-
-                OneItem(
-                    modifier = Modifier.weight(1f),
-                    text = "5 x 5",
-                    onClick = { viewModel.saveRandomWord(5) }
-                )
-            }
+                text = "4 x 4",
+                onClick = { viewModel.saveRandomWord(4) }
+            )
         }
-
-        ChooseGameButton(
-            modifier = Modifier.weight(0.5f),
-            onClick = { expanded.value = !expanded.value }
-        )
 
         AnimatedVisibility(
             visible = expanded.value,
@@ -74,23 +60,42 @@ fun StartScreen (
             exit = fadeOut() + slideOutHorizontally(targetOffsetX = { it / 2}),
             modifier = Modifier.weight(1f),
         ) {
-            Column(
+            OneItem(
                 modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+                text = "5 x 5",
+                onClick = { viewModel.saveRandomWord(5) }
+            )
+        }
 
-                OneItem(
-                    modifier = Modifier.weight(1f),
-                    text = "6 x 6",
-                    onClick = { viewModel.saveRandomWord(6) }
-                )
+        ChooseGameButton(
+            modifier = Modifier.weight(1f),
+            onClick = { expanded.value = !expanded.value }
+        )
 
-                OneItem(
-                    modifier = Modifier.weight(1f),
-                    text = "7 x 7",
-                    onClick = { viewModel.saveRandomWord(7) }
-                )
-            }
+        AnimatedVisibility(
+            visible = expanded.value,
+            enter = fadeIn() + slideInHorizontally(initialOffsetX = { -it / 2}),
+            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { -it / 2}),
+            modifier = Modifier.weight(1f),
+        ) {
+            OneItem(
+                modifier = Modifier.fillMaxSize(),
+                text = "6 x 6",
+                onClick = { viewModel.saveRandomWord(6) }
+            )
+        }
+
+        AnimatedVisibility(
+            visible = expanded.value,
+            enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2}),
+            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { it / 2}),
+            modifier = Modifier.weight(1f),
+        ) {
+            OneItem(
+                modifier = Modifier .fillMaxSize(),
+                text = "7 x 7",
+                onClick = { viewModel.saveRandomWord(7) }
+            )
         }
 
         if(isDatabaseReady) {

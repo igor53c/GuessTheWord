@@ -55,7 +55,7 @@ fun OneRow(
             style = AppTheme.typography.h5,
             textAlign = TextAlign.Center,
             modifier = Modifier
-                .width(AppTheme.dimensions.spaceLarge)
+                .width(AppTheme.dimensions.spaceExtraLarge)
         )
 
         ProgressBar(

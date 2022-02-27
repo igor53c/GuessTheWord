@@ -46,6 +46,29 @@ import com.ipcoding.guesstheword.core.util.all_words.four_letters.TWordsFourLett
 import com.ipcoding.guesstheword.core.util.all_words.four_letters.UWordsFourLetters.U_WORDS_FOUR_LETTERS
 import com.ipcoding.guesstheword.core.util.all_words.four_letters.VWordsFourLetters.V_WORDS_FOUR_LETTERS
 import com.ipcoding.guesstheword.core.util.all_words.four_letters.ZWordsFourLetters.Z_WORDS_FOUR_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.AWordsSixLetters.A_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.BWordsSixLetters.B_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.CWordsSixLetters.C_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.DWordsSixLetters.D_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.EWordsSixLetters.E_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.FWordsSixLetters.F_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.GWordsSixLetters.G_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.HWordsSixLetters.H_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.IWordsSixLetters.I_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.JWordsSixLetters.J_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.KWordsSixLetters.K_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.LWordsSixLetters.L_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.MWordsSixLetters.M_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.NWordsSixLetters.N_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.OWordsSixLetters.O_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.OtherWordsSixLetters.OTHER_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.PWordsSixLetters.P_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.RWordsSixLetters.R_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.SWordsSixLetters.S_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.TWordsSixLetters.T_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.UWordsSixLetters.U_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.VWordsSixLetters.V_WORDS_SIX_LETTERS
+import com.ipcoding.guesstheword.core.util.all_words.six_letters.ZWordsSixLetters.Z_WORDS_SIX_LETTERS
 import com.ipcoding.guesstheword.feature.domain.model.Letter
 
 class CheckWordInDictionary {
@@ -63,14 +86,40 @@ class CheckWordInDictionary {
        return when(number) {
            4 -> fourWords(currentWord)
            5 -> fiveWords(currentWord)
-           6 -> true
+           6 -> sixWords(currentWord)
            7 -> true
            else -> false
        }
-
-
-
    }
+
+    private fun sixWords(currentWord: String): Boolean {
+        return when(currentWord[0]) {
+            'a' -> A_WORDS_SIX_LETTERS.contains(currentWord)
+            'b' -> B_WORDS_SIX_LETTERS.contains(currentWord)
+            'c' -> C_WORDS_SIX_LETTERS.contains(currentWord)
+            'd' -> D_WORDS_SIX_LETTERS.contains(currentWord)
+            'e' -> E_WORDS_SIX_LETTERS.contains(currentWord)
+            'f' -> F_WORDS_SIX_LETTERS.contains(currentWord)
+            'g' -> G_WORDS_SIX_LETTERS.contains(currentWord)
+            'h' -> H_WORDS_SIX_LETTERS.contains(currentWord)
+            'i' -> I_WORDS_SIX_LETTERS.contains(currentWord)
+            'j' -> J_WORDS_SIX_LETTERS.contains(currentWord)
+            'k' -> K_WORDS_SIX_LETTERS.contains(currentWord)
+            'l' -> L_WORDS_SIX_LETTERS.contains(currentWord)
+            'm' -> M_WORDS_SIX_LETTERS.contains(currentWord)
+            'n' -> N_WORDS_SIX_LETTERS.contains(currentWord)
+            'o' -> O_WORDS_SIX_LETTERS.contains(currentWord)
+            'p' -> P_WORDS_SIX_LETTERS.contains(currentWord)
+            'r' -> R_WORDS_SIX_LETTERS.contains(currentWord)
+            's' -> S_WORDS_SIX_LETTERS.contains(currentWord)
+            't' -> T_WORDS_SIX_LETTERS.contains(currentWord)
+            'u' -> U_WORDS_SIX_LETTERS.contains(currentWord)
+            'v' -> V_WORDS_SIX_LETTERS.contains(currentWord)
+            'z' -> Z_WORDS_SIX_LETTERS.contains(currentWord)
+            'š', 'č', 'ć', 'ž', 'đ' -> OTHER_WORDS_SIX_LETTERS.contains(currentWord)
+            else -> false
+        }
+    }
 
     private fun fiveWords(currentWord: String): Boolean {
         return when(currentWord[0]) {

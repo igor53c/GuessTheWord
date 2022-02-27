@@ -9,6 +9,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.InsertChart
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -19,6 +20,7 @@ import com.ipcoding.guesstheword.ui.theme.AppTheme
 fun IconsRow(
     onChangeThemeClick: () -> Unit,
     onStatsClick: () -> Unit,
+    isDarkTheme: Boolean
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -29,7 +31,7 @@ fun IconsRow(
             modifier = Modifier.weight(1f)
         ) {
             Icon(
-                imageVector = Icons.Default.DarkMode,
+                imageVector = if(isDarkTheme) Icons.Default.DarkMode else Icons.Default.WbSunny,
                 contentDescription = stringResource(id = R.string.change_mode_icon),
                 modifier = Modifier.size(AppTheme.dimensions.spaceLarge),
                 tint = AppTheme.colors.primary
