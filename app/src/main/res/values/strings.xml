@@ -8,9 +8,19 @@
     <string name="backspace_icon">Backspace icon</string>
     <string name="enter_icon">Enter icon</string>
     <string name="change_mode_icon">Change mode icon</string>
+    <string name="share_icon">Share icon</string>
+    <string name="rate_app_icon">Rate app icon</string>
+    <string name="open_stats_icon">Open Stats icon</string>
+    <string name="info_icon">Info icon</string>
     <string name="not_in_dictionary">Reč nije u rečniku</string>
     <string name="guessing_word">Tražena reč je:</string>
     <string name="guessing_success">Uspešnost pogađanja</string>
     <string name="average_number_attempts">Prosečan broj pokušaja</string>
     <string name="choose_game">Izaberi igru</string>
+    <string name="guess_the_word">Pogodi zadatu reč</string>
+    <string name="you_must_enter_valid_word">U svakom pokušaju moraš uneti validnu reč</string>
+    <string name="after_guess">Nakon pokušaja, slova ce promeniti boju, kako bi mogao videti koliko si bio blizu pogotka</string>
+    <string name="not_in_word">Slovo nije u reči ni na jednom mestu</string>
+    <string name="but_wrong_place">Slovo je u reči, ali na pogrešnom mestu</string>
+    <string name="in_right_place">Slovo je u reči i na pravom mestu</string>
 </resources>

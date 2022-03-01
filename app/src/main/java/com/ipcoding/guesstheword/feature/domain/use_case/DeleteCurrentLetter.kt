@@ -9,18 +9,17 @@ class DeleteCurrentLetter(
 
     suspend operator fun invoke(row: Int, column: Int, letters: List<Letter>, number: Int) : Int {
 
-        var letter = letters.get(row * number + column)
-        if(letter.text != "") {
-
+        var letter = letters[row * number + column]
+        return if(letter.text != "") {
             letter.text = ""
             letterRepository.insertLetter(letter)
-            return column
+            column
         } else {
             val newPosition = (column + number - 1) % number
-            letter = letters.get(row * number + newPosition)
+            letter = letters[row * number + newPosition]
             letter.text = ""
             letterRepository.insertLetter(letter)
-            return newPosition
+            newPosition
         }
     }
 }

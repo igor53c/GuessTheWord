@@ -2,11 +2,8 @@ package com.ipcoding.guesstheword.ui.theme
 
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 
 val SmallShapes = CustomShapes(
@@ -32,8 +29,7 @@ val ExtraLargeShapes = CustomShapes(
 @Immutable
 class CustomShapes(
     val roundedCornerShapeSmall: CornerBasedShape = RoundedCornerShape(8.dp),
-    val roundedCornerShapeMedium: CornerBasedShape = RoundedCornerShape(16.dp),
-    val rectangleShape: Shape = RectangleShape
+    val roundedCornerShapeMedium: CornerBasedShape = RoundedCornerShape(16.dp)
 )
 
 val LocalAppShapes = staticCompositionLocalOf { NormalShapes }

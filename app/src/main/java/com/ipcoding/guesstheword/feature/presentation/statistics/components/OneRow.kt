@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import com.ipcoding.guesstheword.core.util.Constants.TYPES_OF_GAMES
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 import kotlinx.coroutines.delay
 import kotlin.math.round
@@ -50,7 +51,7 @@ fun OneRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "$number x $number",
+            text = TYPES_OF_GAMES[number - 4],
             color = AppTheme.colors.primary,
             style = AppTheme.typography.h5,
             textAlign = TextAlign.Center,

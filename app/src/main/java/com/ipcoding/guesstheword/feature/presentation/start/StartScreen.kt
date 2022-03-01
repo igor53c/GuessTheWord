@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.ipcoding.guesstheword.core.util.Constants.TYPES_OF_GAMES
 import com.ipcoding.guesstheword.feature.presentation.start.components.ChooseGameButton
 import com.ipcoding.guesstheword.feature.presentation.start.components.IconsRow
 import com.ipcoding.guesstheword.feature.presentation.start.components.OneItem
@@ -27,10 +28,11 @@ fun StartScreen (
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(AppTheme.dimensions.spaceMedium),
+            .padding(top = AppTheme.dimensions.spaceMedium),
        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val expanded = remember { mutableStateOf(false) }
+        val isEverythingGone = remember { mutableStateOf(false) }
 
         IconsRow(
             onChangeThemeClick = {
@@ -38,63 +40,84 @@ fun StartScreen (
                 onChangeThemeClick()
             },
             onStatsClick = { navController.navigate(Screen.StatisticsScreen.route) },
-            isDarkTheme = isDarkTheme
+            isDarkTheme = isDarkTheme,
+            onInfoClick = { isEverythingGone.value = true },
+            onDismissButtonClick = { isEverythingGone.value = false }
         )
 
         AnimatedVisibility(
-            visible = expanded.value,
+            visible = expanded.value && !isEverythingGone.value,
             enter = fadeIn() + slideInHorizontally(initialOffsetX = { -it / 2}),
             exit = fadeOut() + slideOutHorizontally(targetOffsetX = { -it / 2}),
             modifier = Modifier.weight(1f),
         ) {
             OneItem(
                 modifier = Modifier.fillMaxSize(),
-                text = "4 x 4",
-                onClick = { viewModel.saveRandomWord(4) }
+                text = TYPES_OF_GAMES[0],
+                onClick = {
+                    isEverythingGone.value = true
+                    viewModel.saveRandomWord(4)
+                }
             )
         }
 
         AnimatedVisibility(
-            visible = expanded.value,
+            visible = expanded.value && !isEverythingGone.value,
             enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2}),
             exit = fadeOut() + slideOutHorizontally(targetOffsetX = { it / 2}),
             modifier = Modifier.weight(1f),
         ) {
             OneItem(
                 modifier = Modifier.fillMaxSize(),
-                text = "5 x 5",
-                onClick = { viewModel.saveRandomWord(5) }
+                text = TYPES_OF_GAMES[1],
+                onClick = {
+                    isEverythingGone.value = true
+                    viewModel.saveRandomWord(5)
+                }
             )
         }
 
-        ChooseGameButton(
+        AnimatedVisibility(
+            visible = !isEverythingGone.value,
+            enter = fadeIn(),
+            exit = fadeOut(),
             modifier = Modifier.weight(1f),
-            onClick = { expanded.value = !expanded.value }
-        )
+        ) {
+            ChooseGameButton(
+                modifier = Modifier.fillMaxSize(),
+                onClick = { expanded.value = !expanded.value }
+            )
+        }
 
         AnimatedVisibility(
-            visible = expanded.value,
+            visible = expanded.value && !isEverythingGone.value,
             enter = fadeIn() + slideInHorizontally(initialOffsetX = { -it / 2}),
             exit = fadeOut() + slideOutHorizontally(targetOffsetX = { -it / 2}),
             modifier = Modifier.weight(1f),
         ) {
             OneItem(
                 modifier = Modifier.fillMaxSize(),
-                text = "6 x 6",
-                onClick = { viewModel.saveRandomWord(6) }
+                text = TYPES_OF_GAMES[2],
+                onClick = {
+                    isEverythingGone.value = true
+                    viewModel.saveRandomWord(6)
+                }
             )
         }
 
         AnimatedVisibility(
-            visible = expanded.value,
+            visible = expanded.value && !isEverythingGone.value,
             enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2}),
             exit = fadeOut() + slideOutHorizontally(targetOffsetX = { it / 2}),
             modifier = Modifier.weight(1f),
         ) {
             OneItem(
                 modifier = Modifier .fillMaxSize(),
-                text = "7 x 7",
-                onClick = { viewModel.saveRandomWord(7) }
+                text = TYPES_OF_GAMES[3],
+                onClick = {
+                    isEverythingGone.value = true
+                    viewModel.saveRandomWord(7)
+                }
             )
         }
 
