@@ -19,7 +19,7 @@
     <string name="choose_game">Izaberi igru</string>
     <string name="guess_the_word">Pogodi zadatu reč</string>
     <string name="you_must_enter_valid_word">U svakom pokušaju moraš uneti validnu reč</string>
-    <string name="after_guess">Nakon pokušaja, slova ce promeniti boju, kako bi mogao videti koliko si bio blizu pogotka</string>
+    <string name="after_guess">Nakon pokušaja, slova će promeniti boju, kako bi mogao videti koliko si bio blizu pogotka</string>
     <string name="not_in_word">Slovo nije u reči ni na jednom mestu</string>
     <string name="but_wrong_place">Slovo je u reči, ali na pogrešnom mestu</string>
     <string name="in_right_place">Slovo je u reči i na pravom mestu</string>

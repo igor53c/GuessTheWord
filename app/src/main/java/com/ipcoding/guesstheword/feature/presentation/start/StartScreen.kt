@@ -41,8 +41,10 @@ fun StartScreen (
             },
             onStatsClick = { navController.navigate(Screen.StatisticsScreen.route) },
             isDarkTheme = isDarkTheme,
-            onInfoClick = { isEverythingGone.value = true },
-            onDismissButtonClick = { isEverythingGone.value = false }
+            onInfoClick = {
+                isEverythingGone.value = true
+                navController.navigate(Screen.InfoScreen.route)
+            }
         )
 
         AnimatedVisibility(

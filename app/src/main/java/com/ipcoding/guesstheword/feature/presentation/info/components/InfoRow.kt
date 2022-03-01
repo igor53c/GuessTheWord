@@ -1,4 +1,4 @@
-package com.ipcoding.guesstheword.feature.presentation.start.components
+package com.ipcoding.guesstheword.feature.presentation.info.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,7 +22,7 @@ fun InfoRow(
 ) {
     Row(
         modifier = Modifier
-            .padding(bottom = AppTheme.dimensions.spaceSmall)
+            .padding(bottom = AppTheme.dimensions.spaceMedium)
             .height(AppTheme.dimensions.spaceExtraLarge)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
@@ -39,7 +39,7 @@ fun InfoRow(
         ) {}
         Text(
             text = text,
-            style = AppTheme.typography.h6,
+            style = AppTheme.typography.h5,
             color = AppTheme.colors.primary,
             textAlign = TextAlign.Start,
             modifier = Modifier

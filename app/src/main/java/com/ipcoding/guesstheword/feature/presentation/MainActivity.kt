@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ipcoding.guesstheword.core.domain.preferences.Preferences
 import com.ipcoding.guesstheword.feature.presentation.game.GameScreen
+import com.ipcoding.guesstheword.feature.presentation.info.InfoScreen
 import com.ipcoding.guesstheword.feature.presentation.start.StartScreen
 import com.ipcoding.guesstheword.feature.presentation.statistics.StatisticsScreen
 import com.ipcoding.guesstheword.feature.presentation.util.Screen
@@ -31,6 +32,8 @@ class MainActivity : ComponentActivity() {
         super.onResume()
         isStatusBarVisibleLiveData.value = false
     }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +69,12 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = Screen.StatisticsScreen.route) {
                             StatisticsScreen(navController = navController)
+                            BackHandler(true) {
+                                navController.navigate(Screen.StartScreen.route)
+                            }
+                        }
+                        composable(route = Screen.InfoScreen.route) {
+                            InfoScreen()
                             BackHandler(true) {
                                 navController.navigate(Screen.StartScreen.route)
                             }

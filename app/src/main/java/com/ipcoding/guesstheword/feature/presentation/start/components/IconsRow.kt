@@ -10,8 +10,6 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
@@ -25,8 +23,7 @@ fun IconsRow(
     onChangeThemeClick: () -> Unit,
     onStatsClick: () -> Unit,
     isDarkTheme: Boolean,
-    onInfoClick: () -> Unit,
-    onDismissButtonClick: () -> Unit
+    onInfoClick: () -> Unit
 ) {
     val uriHandler = LocalUriHandler.current
     val context = LocalContext.current
@@ -35,7 +32,6 @@ fun IconsRow(
         putExtra(Intent.EXTRA_TEXT, APPLICATION_LINK)
         type = "text/plain"
     }
-    val isInfoDialogVisible = remember { mutableStateOf(false) }
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -44,7 +40,6 @@ fun IconsRow(
         IconButton(
             onClick = {
                 onInfoClick()
-                isInfoDialogVisible.value = true
             },
             modifier = Modifier.weight(1f)
         ) {
@@ -103,14 +98,5 @@ fun IconsRow(
                 tint = AppTheme.colors.primary
             )
         }
-    }
-
-    if(isInfoDialogVisible.value) {
-        InfoDialog(
-            dismissButton = {
-                onDismissButtonClick()
-                isInfoDialogVisible.value = false
-            }
-        )
     }
 }
