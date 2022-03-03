@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 class LetterRepositoryImpl(
     private val dao: LetterDao
-    ) : LetterRepository {
+) : LetterRepository {
 
     override suspend fun insertLetter(letter: Letter) {
         dao.insertLetter(letter)

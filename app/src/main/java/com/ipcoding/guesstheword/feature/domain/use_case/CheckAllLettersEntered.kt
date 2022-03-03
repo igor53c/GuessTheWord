@@ -15,7 +15,7 @@ class CheckAllLettersEntered(
 
         for (column in 0 until number) {
             val letter = letters[row * number + column]
-            if(letter.text == "") {
+            if (letter.text == "") {
                 areEntered = false
                 letter.color = Colors.Error.toArgb()
                 letterRepository.insertLetter(letter)

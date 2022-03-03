@@ -1,6 +1,9 @@
 package com.ipcoding.guesstheword.feature.presentation.game.components
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -34,9 +37,9 @@ fun OneLetter(
             .padding(padding)
             .clickable { onClick() }
     ) {
-       AnimatedVisibility(
+        AnimatedVisibility(
             visible = textColor != 0,
-            enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2}),
+            enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2 }),
             exit = fadeOut()
         ) {
             Box(

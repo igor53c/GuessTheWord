@@ -33,7 +33,7 @@ fun InfoRow(
             borderColor = borderColor,
             size = AppTheme.dimensions.spaceExtraLarge,
             padding = AppTheme.dimensions.default,
-            style = AppTheme.typography.h3,
+            style = AppTheme.typography.h4,
             borderWidth = AppTheme.dimensions.spaceExtraSmall,
             shape = AppTheme.customShapes.roundedCornerShapeMedium
         ) {}

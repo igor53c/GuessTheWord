@@ -29,7 +29,7 @@ fun OneRow(
     val maxProgress = remember { mutableStateOf(1f - (progress - 1f) / number.toFloat()) }
 
     LaunchedEffect(true) {
-        if(isNumberAttempts && progress != 0f) {
+        if (isNumberAttempts && progress != 0f) {
             delay(200)
             while (targetProgress.value < maxProgress.value) {
                 targetProgress.value += 0.002f
@@ -66,11 +66,11 @@ fun OneRow(
             color = AppTheme.colors.primary
         )
 
-        if(isNumberAttempts) {
+        if (isNumberAttempts) {
             Text(
-                text = if(animatedProgress.value == 0f)
+                text = if (animatedProgress.value == 0f)
                     String.format("%.1f", animatedProgress.value) else
-                        String.format("%.1f", number * (1f - animatedProgress.value) + 1f),
+                    String.format("%.1f", number * (1f - animatedProgress.value) + 1f),
                 color = AppTheme.colors.primary,
                 style = AppTheme.typography.h5,
                 textAlign = TextAlign.Center,

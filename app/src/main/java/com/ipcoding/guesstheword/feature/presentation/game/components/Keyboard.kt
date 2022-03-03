@@ -26,7 +26,7 @@ import com.ipcoding.guesstheword.ui.theme.AppTheme
 @Composable
 fun Keyboard(
     maxWidth: Dp,
-    viewModel:  GameViewModel = hiltViewModel()
+    viewModel: GameViewModel = hiltViewModel()
 ) {
     val keyboardLetters = viewModel.keyboardLetters.value
 
@@ -41,7 +41,7 @@ fun Keyboard(
                 LazyRow(modifier = Modifier) {
                     items(9) { item2 ->
 
-                        if(keyboardLetters.isNotEmpty()) {
+                        if (keyboardLetters.isNotEmpty()) {
                             val keyboardLetter = keyboardLetters[item1 * 9 + item2]
 
                             val color = animateColorAsState(
@@ -52,7 +52,7 @@ fun Keyboard(
                             OneLetter(
                                 text = keyboardLetter.text,
                                 textColor = color.toArgb(),
-                                borderColor =  color,
+                                borderColor = color,
                                 size = maxWidth / 10,
                                 style = AppTheme.typography.h5,
                                 padding = AppTheme.dimensions.spaceSuperSmall,

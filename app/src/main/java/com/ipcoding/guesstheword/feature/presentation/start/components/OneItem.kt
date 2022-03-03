@@ -22,7 +22,7 @@ fun OneItem(
         contentAlignment = Alignment.Center
     ) {
         Button(
-            onClick =  onClick,
+            onClick = onClick,
             modifier = Modifier.width(AppTheme.dimensions.spaceSuperLarge * 2),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = AppTheme.colors.primary

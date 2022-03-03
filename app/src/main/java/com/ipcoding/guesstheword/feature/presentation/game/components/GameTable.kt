@@ -22,9 +22,9 @@ fun GameTable(
     style: TextStyle,
     padding: Dp
 ) {
-    val currentLetter  = viewModel.currentLetter.value
-    val currentRow  = viewModel.currentRow.value
-    val letters  = viewModel.letters.value
+    val currentLetter = viewModel.currentLetter.value
+    val currentRow = viewModel.currentRow.value
+    val letters = viewModel.letters.value
 
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -34,14 +34,14 @@ fun GameTable(
             LazyRow(modifier = Modifier) {
                 items(gameNumber) { item2 ->
 
-                    if(letters.isNotEmpty()) {
+                    if (letters.isNotEmpty()) {
 
                         val letter = letters[item1 * gameNumber + item2]
 
-                        val borderColor = if(
+                        val borderColor = if (
                             currentLetter == item2 && currentRow == item1
                         ) {
-                            if(letter.color == Colors.Error.toArgb())
+                            if (letter.color == Colors.Error.toArgb())
                                 Colors.Red else Colors.Gray
                         } else Color(letter.color)
 

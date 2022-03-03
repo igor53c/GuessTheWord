@@ -25,8 +25,10 @@ interface LetterDao {
     @Query("SELECT * FROM letters_table WHERE NOT isKeyboard ORDER BY id ASC")
     suspend fun getLetters(): List<Letter>
 
-    @Query("SELECT text FROM letters_table " +
-            "WHERE NOT isKeyboard AND `row` = :row AND `column` = :column")
+    @Query(
+        "SELECT text FROM letters_table " +
+                "WHERE NOT isKeyboard AND `row` = :row AND `column` = :column"
+    )
     suspend fun getLetter(row: Int, column: Int): String
 
     @Query("SELECT * FROM letters_table WHERE isKeyboard AND `text` = :text LIMIT 1")

@@ -11,8 +11,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ipcoding.guesstheword.feature.presentation.game.components.*
-import com.ipcoding.guesstheword.ui.theme.AppTheme
 import com.ipcoding.guesstheword.feature.presentation.util.Screen
+import com.ipcoding.guesstheword.ui.theme.AppTheme
 
 @Composable
 fun GameScreen(
@@ -25,13 +25,13 @@ fun GameScreen(
     val padding = remember { mutableStateOf(defaultDimension) }
     val isScreenVisible = remember { mutableStateOf(true) }
     val handleOnBackPressed = remember { mutableStateOf(false) }
-    val isWordCorrect  = viewModel.isWordCorrect.value
-    val isEndOfGame  = viewModel.isEndOfGame.value
-    val guessingWord  = viewModel.guessingWord.value
-    val gameNumber  = viewModel.gameNumber.value
-    val wordIsInDictionary  = viewModel.wordIsInDictionary.value
+    val isWordCorrect = viewModel.isWordCorrect.value
+    val isEndOfGame = viewModel.isEndOfGame.value
+    val guessingWord = viewModel.guessingWord.value
+    val gameNumber = viewModel.gameNumber.value
+    val wordIsInDictionary = viewModel.wordIsInDictionary.value
 
-    when(gameNumber) {
+    when (gameNumber) {
         4 -> {
             style.value = AppTheme.typography.h2
             padding.value = AppTheme.dimensions.spaceExtraSmall
@@ -50,7 +50,7 @@ fun GameScreen(
         }
     }
 
-    if(isScreenVisible.value) {
+    if (isScreenVisible.value) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -84,7 +84,7 @@ fun GameScreen(
 
                     when {
                         isEndOfGame -> {
-                            if(isWordCorrect) {
+                            if (isWordCorrect) {
                                 isScreenVisible.value = false
                                 viewModel.resetIsEndOfGame()
                                 navController.navigate(Screen.StatisticsScreen.route)

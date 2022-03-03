@@ -1,10 +1,8 @@
 package com.ipcoding.guesstheword.di
 
 import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.room.Room
-import com.ipcoding.guesstheword.core.data.DefaultPreferences
+import com.ipcoding.guesstheword.core.data.DefaultPreferencesFake
 import com.ipcoding.guesstheword.core.domain.preferences.Preferences
 import com.ipcoding.guesstheword.feature.data.data_source.AppDatabase
 import com.ipcoding.guesstheword.feature.data.repository.GameRepositoryImpl
@@ -25,10 +23,9 @@ object AppModuleTest {
     @Provides
     @Singleton
     fun provideAppDatabase(app: Application): AppDatabase {
-        return Room.databaseBuilder(
+        return Room.inMemoryDatabaseBuilder(
             app,
-            AppDatabase::class.java,
-            AppDatabase.DATABASE_NAME
+            AppDatabase::class.java
         ).build()
     }
 
@@ -46,14 +43,8 @@ object AppModuleTest {
 
     @Provides
     @Singleton
-    fun provideSharedPreferences(app: Application): SharedPreferences {
-        return app.getSharedPreferences("shared_pref", Context.MODE_PRIVATE)
-    }
-
-    @Provides
-    @Singleton
-    fun providePreferences(sharedPreferences: SharedPreferences): Preferences {
-        return DefaultPreferences(sharedPreferences)
+    fun providePreferences(): Preferences {
+        return DefaultPreferencesFake()
     }
 
     @Provides

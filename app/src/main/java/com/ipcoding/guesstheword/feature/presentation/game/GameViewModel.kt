@@ -31,7 +31,7 @@ class GameViewModel @Inject constructor(
     private var _isWordCorrect = mutableStateOf(false)
     val isWordCorrect: State<Boolean> = _isWordCorrect
 
-    private var _isEndOfGame  = mutableStateOf(false)
+    private var _isEndOfGame = mutableStateOf(false)
     val isEndOfGame: State<Boolean> = _isEndOfGame
 
     private var pressedEnter = mutableStateOf(false)
@@ -39,10 +39,10 @@ class GameViewModel @Inject constructor(
     private var _wordIsInDictionary = mutableStateOf(true)
     val wordIsInDictionary: State<Boolean> = _wordIsInDictionary
 
-    private var  _currentLetter = mutableStateOf(0)
+    private var _currentLetter = mutableStateOf(0)
     val currentLetter: State<Int> = _currentLetter
 
-    private var  _currentRow = mutableStateOf(0)
+    private var _currentRow = mutableStateOf(0)
     val currentRow: State<Int> = _currentRow
 
     private val _letters = mutableStateOf<List<Letter>>(emptyList())
@@ -91,17 +91,18 @@ class GameViewModel @Inject constructor(
     }
 
     fun checkAllLettersEntered() {
-        if(!pressedEnter.value) {
+        if (!pressedEnter.value) {
             pressedEnter.value = true
             val waitJob = viewModelScope.launch {
                 delay(500L)
             }
             viewModelScope.launch {
-                if(allUseCases.checkAllLettersEntered(
+                if (allUseCases.checkAllLettersEntered(
                         row = currentRow.value,
                         letters = letters.value,
                         number = gameNumber.value
-                    )) {
+                    )
+                ) {
                     checkWordInDictionary()
                 } else forcedComposing()
 
@@ -112,11 +113,12 @@ class GameViewModel @Inject constructor(
     }
 
     private suspend fun checkWordInDictionary() {
-        if(allUseCases.checkWordInDictionary(
+        if (allUseCases.checkWordInDictionary(
                 row = currentRow.value,
                 letters = letters.value,
                 number = gameNumber.value
-            )) {
+            )
+        ) {
             checkIfWordIsCorrect()
             _wordIsInDictionary.value = true
         } else {
@@ -126,7 +128,7 @@ class GameViewModel @Inject constructor(
             wordIsInDictionaryJob?.cancel()
             wordIsInDictionaryJob = viewModelScope.launch {
                 repeat(10) {
-                    if(isActive) delay(500L)
+                    if (isActive) delay(500L)
                 }
                 _wordIsInDictionary.value = true
             }
@@ -136,15 +138,16 @@ class GameViewModel @Inject constructor(
     private suspend fun checkIfWordIsCorrect() {
         val row = currentRow.value
         _currentLetter.value = -1
-        if(row != (gameNumber.value - 1)) {
+        if (row != (gameNumber.value - 1)) {
             _currentLetter.value = 0
             _currentRow.value = row + 1
         }
-        if(allUseCases.checkIfWordIsCorrect(
-            guessingWord = guessingWord.value,
-            row = row,
-            number = gameNumber.value
-        )) {
+        if (allUseCases.checkIfWordIsCorrect(
+                guessingWord = guessingWord.value,
+                row = row,
+                number = gameNumber.value
+            )
+        ) {
             allUseCases.insertGame(
                 typeGameNumber = gameNumber.value,
                 guessingWord = guessingWord.value,
@@ -154,7 +157,7 @@ class GameViewModel @Inject constructor(
             _isWordCorrect.value = true
             _isEndOfGame.value = true
         }
-        if(row == (gameNumber.value - 1)) {
+        if (row == (gameNumber.value - 1)) {
             allUseCases.insertGame(
                 typeGameNumber = gameNumber.value,
                 guessingWord = guessingWord.value,
@@ -174,7 +177,7 @@ class GameViewModel @Inject constructor(
     }
 
     fun selectCurrentLetter(column: Int, row: Int) {
-        if(row == currentRow.value) {
+        if (row == currentRow.value) {
             _currentLetter.value = column
         }
     }

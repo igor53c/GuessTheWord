@@ -12,6 +12,6 @@ class SetWordsSixLettersTest {
             it.length != 6
         }
 
-        assertTrue(list.size == 0)
+        assertTrue(list.isEmpty())
     }
 }

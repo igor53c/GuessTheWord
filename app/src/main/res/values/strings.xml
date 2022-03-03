@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GuessTheWord</string>
+    <string name="app_name">Reč</string>
 
     <string name="leave_game">Želiš da napustiš igru?</string>
     <string name="yes">Da</string>

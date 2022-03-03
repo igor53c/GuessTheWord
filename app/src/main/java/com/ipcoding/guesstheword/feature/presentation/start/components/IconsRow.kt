@@ -68,7 +68,7 @@ fun IconsRow(
             modifier = Modifier.weight(1f)
         ) {
             Icon(
-                imageVector = if(isDarkTheme) Icons.Default.DarkMode else Icons.Default.WbSunny,
+                imageVector = if (isDarkTheme) Icons.Default.DarkMode else Icons.Default.WbSunny,
                 contentDescription = stringResource(id = R.string.change_mode_icon),
                 modifier = Modifier.size(AppTheme.dimensions.spaceLarge),
                 tint = AppTheme.colors.primary

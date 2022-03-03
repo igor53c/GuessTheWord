@@ -1,6 +1,9 @@
 package com.ipcoding.guesstheword.feature.presentation.statistics
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -44,7 +47,7 @@ fun StatisticsScreen(
         ) {
             items(4) { item ->
 
-                if(stats.isNotEmpty()) {
+                if (stats.isNotEmpty()) {
                     OneRow(
                         number = item + 4,
                         progress = stats[item].guessingSuccess
@@ -68,7 +71,7 @@ fun StatisticsScreen(
         ) {
             items(4) { item ->
 
-                if(stats.isNotEmpty()) {
+                if (stats.isNotEmpty()) {
                     OneRow(
                         number = item + 4,
                         progress = stats[item].numberAttempts,

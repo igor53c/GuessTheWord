@@ -8,7 +8,7 @@ class GetLetters(
     private val letterRepository: LetterRepository
 ) {
 
-    operator fun invoke() : Flow<List<Letter>> {
+    operator fun invoke(): Flow<List<Letter>> {
         return letterRepository.getLettersFlow()
     }
 }

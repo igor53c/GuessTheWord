@@ -1,7 +1,9 @@
 package com.ipcoding.guesstheword.feature.presentation.start
 
 import androidx.compose.animation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,7 +19,7 @@ import com.ipcoding.guesstheword.feature.presentation.util.Screen
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 
 @Composable
-fun StartScreen (
+fun StartScreen(
     navController: NavController,
     viewModel: StartViewModel = hiltViewModel(),
     onChangeThemeClick: () -> Unit
@@ -29,7 +31,7 @@ fun StartScreen (
         modifier = Modifier
             .fillMaxSize()
             .padding(top = AppTheme.dimensions.spaceMedium),
-       horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val expanded = remember { mutableStateOf(false) }
         val isEverythingGone = remember { mutableStateOf(false) }
@@ -49,8 +51,8 @@ fun StartScreen (
 
         AnimatedVisibility(
             visible = expanded.value && !isEverythingGone.value,
-            enter = fadeIn() + slideInHorizontally(initialOffsetX = { -it / 2}),
-            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { -it / 2}),
+            enter = fadeIn() + slideInHorizontally(initialOffsetX = { -it / 2 }),
+            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { -it / 2 }),
             modifier = Modifier.weight(1f),
         ) {
             OneItem(
@@ -65,8 +67,8 @@ fun StartScreen (
 
         AnimatedVisibility(
             visible = expanded.value && !isEverythingGone.value,
-            enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2}),
-            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { it / 2}),
+            enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2 }),
+            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { it / 2 }),
             modifier = Modifier.weight(1f),
         ) {
             OneItem(
@@ -93,8 +95,8 @@ fun StartScreen (
 
         AnimatedVisibility(
             visible = expanded.value && !isEverythingGone.value,
-            enter = fadeIn() + slideInHorizontally(initialOffsetX = { -it / 2}),
-            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { -it / 2}),
+            enter = fadeIn() + slideInHorizontally(initialOffsetX = { -it / 2 }),
+            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { -it / 2 }),
             modifier = Modifier.weight(1f),
         ) {
             OneItem(
@@ -109,12 +111,12 @@ fun StartScreen (
 
         AnimatedVisibility(
             visible = expanded.value && !isEverythingGone.value,
-            enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2}),
-            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { it / 2}),
+            enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2 }),
+            exit = fadeOut() + slideOutHorizontally(targetOffsetX = { it / 2 }),
             modifier = Modifier.weight(1f),
         ) {
             OneItem(
-                modifier = Modifier .fillMaxSize(),
+                modifier = Modifier.fillMaxSize(),
                 text = TYPES_OF_GAMES[3],
                 onClick = {
                     isEverythingGone.value = true
@@ -123,7 +125,7 @@ fun StartScreen (
             )
         }
 
-        if(isDatabaseReady) {
+        if (isDatabaseReady) {
             viewModel.databaseIsReady()
             navController.navigate(Screen.GameScreen.route)
         }

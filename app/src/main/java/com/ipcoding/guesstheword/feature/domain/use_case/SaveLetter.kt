@@ -10,7 +10,7 @@ class SaveLetter(
     suspend operator fun invoke(char: String, row: Int, column: Int, number: Int) {
         letterRepository.insertLetter(
             Letter(
-                text =  char,
+                text = char,
                 row = row,
                 column = column,
                 id = row * number + column + 1

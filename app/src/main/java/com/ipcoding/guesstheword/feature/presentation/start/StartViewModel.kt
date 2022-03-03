@@ -34,8 +34,8 @@ class StartViewModel @Inject constructor(
         _isDarkTheme.value = preferences.loadIsDarkTheme()
     }
 
-   fun saveIsDarkTheme() {
-       _isDarkTheme.value = !isDarkTheme.value
+    fun saveIsDarkTheme() {
+        _isDarkTheme.value = !isDarkTheme.value
         preferences.saveIsDarkTheme(isDarkTheme.value)
     }
 

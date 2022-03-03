@@ -8,7 +8,7 @@ class CreateDatabase(
     private val letterRepository: LetterRepository
 ) {
 
-    suspend operator fun invoke(number: Int) : Boolean {
+    suspend operator fun invoke(number: Int): Boolean {
         letterRepository.deleteAll()
         for (row in 0 until number) {
             for (column in 0 until number) {

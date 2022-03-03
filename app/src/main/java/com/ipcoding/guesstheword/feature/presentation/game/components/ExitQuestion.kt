@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import com.ipcoding.guesstheword.ui.theme.AppTheme
 import com.ipcoding.guesstheword.R
+import com.ipcoding.guesstheword.ui.theme.AppTheme
 
 @Composable
 fun ExitQuestion(

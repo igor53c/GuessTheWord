@@ -7,7 +7,7 @@ class GetStats(
     private val gameRepository: GameRepository
 ) {
 
-    suspend operator fun invoke() : List<Stats> {
+    suspend operator fun invoke(): List<Stats> {
 
         val statsList = mutableListOf<Stats>()
 
@@ -16,13 +16,13 @@ class GetStats(
             var numberWins = 0
             var numberAttempts = 0
 
-            for(game in games)
-                if(game.isVictory) {
+            for (game in games)
+                if (game.isVictory) {
                     numberWins += 1
                     numberAttempts += game.numberAttempts
                 }
 
-            if(games.isEmpty()) statsList.add(Stats(0f, 0f)) else
+            if (games.isEmpty()) statsList.add(Stats(0f, 0f)) else
                 statsList.add(
                     Stats(
                         guessingSuccess = numberWins.toFloat() / games.size.toFloat(),

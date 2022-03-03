@@ -20,7 +20,7 @@ class CheckIfWordIsCorrect(
         val currentLetters = mutableListOf<Letter>()
         val letters = letterRepository.getLetters()
 
-        for(i in guessingWord.indices) {
+        for (i in guessingWord.indices) {
             val currentLetter = letters[row * number + i]
             currentLetters.add(i, currentLetter)
             correctWord.add(i, guessingWord[i].toString().lowercase())
@@ -31,11 +31,11 @@ class CheckIfWordIsCorrect(
             delay((DURATION_LETTER_ANIMATION / 5).toLong())
         }
 
-        for(i in 0 until number) {
+        for (i in 0 until number) {
 
             val currentLetter = letters[row * number + i]
 
-            if(correctWord[i] == currentVariableLetters[i]) {
+            if (correctWord[i] == currentVariableLetters[i]) {
 
                 currentLetter.color = Colors.Green.toArgb()
                 correctWord[i] = ""
@@ -46,39 +46,39 @@ class CheckIfWordIsCorrect(
                 keyboardLetter.color = Colors.Green.toArgb()
                 letterRepository.insertLetter(keyboardLetter)
 
-            } else  wordIsCorrect = false
+            } else wordIsCorrect = false
         }
 
-        for(i in 0 until number) {
+        for (i in 0 until number) {
 
             val currentLetter = letters[row * number + i]
 
-            if(correctWord.contains(currentVariableLetters[i])) {
+            if (correctWord.contains(currentVariableLetters[i])) {
                 currentLetter.color = Colors.Yellow.toArgb()
                 correctWord[correctWord.indexOf(currentVariableLetters[i])] = ""
                 currentVariableLetters[i] = "_"
                 currentLetters[i] = currentLetter
 
                 val keyboardLetter = letterRepository.getKeyboardLetter(currentLetter.text)
-                if(keyboardLetter.color != Colors.Green.toArgb()) {
+                if (keyboardLetter.color != Colors.Green.toArgb()) {
                     keyboardLetter.color = Colors.Yellow.toArgb()
                     letterRepository.insertLetter(keyboardLetter)
                 }
             }
         }
 
-        for(i in 0 until number) {
+        for (i in 0 until number) {
             letterRepository.insertLetter(currentLetters[i])
             delay((DURATION_LETTER_ANIMATION / 5).toLong())
         }
 
-        for(i in 0 until number) {
+        for (i in 0 until number) {
 
             val currentLetter = letters[row * number + i]
 
-            if(currentVariableLetters[i] != "_") {
+            if (currentVariableLetters[i] != "_") {
                 val keyboardLetter = letterRepository.getKeyboardLetter(currentLetter.text)
-                if(
+                if (
                     keyboardLetter.color != Colors.Green.toArgb() &&
                     keyboardLetter.color != Colors.Yellow.toArgb()
                 ) {
@@ -88,7 +88,7 @@ class CheckIfWordIsCorrect(
             }
         }
 
-        if(wordIsCorrect) delay((DURATION_LETTER_ANIMATION / 3).toLong())
+        if (wordIsCorrect) delay((DURATION_LETTER_ANIMATION / 3).toLong())
 
         return wordIsCorrect
     }

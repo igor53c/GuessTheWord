@@ -1,7 +1,10 @@
 package com.ipcoding.guesstheword.feature.presentation.statistics.components
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,8 +27,9 @@ fun ProgressBar(
             .padding(AppTheme.dimensions.spaceMedium),
         contentAlignment = Alignment.Center
     ) {
-        Canvas(modifier = Modifier
-            .fillMaxSize()
+        Canvas(
+            modifier = Modifier
+                .fillMaxSize()
         ) {
             val canvasWidth = size.width
             val canvasHeight = size.height
@@ -37,7 +41,7 @@ fun ProgressBar(
                 cornerRadius = CornerRadius(cornerRadius, cornerRadius),
             )
 
-            if(progress >= 0f)
+            if (progress >= 0f)
                 drawRoundRect(
                     color = color,
                     topLeft = Offset(0f, 0f),
