@@ -28,7 +28,7 @@ class CheckIfWordIsCorrect(
             currentLetter.color = Color.Transparent.toArgb()
             letterRepository.insertLetter(currentLetter)
             currentLetter.color = Colors.Blue.toArgb()
-            delay((DURATION_LETTER_ANIMATION / 5).toLong())
+            delay((DURATION_LETTER_ANIMATION / number).toLong())
         }
 
         for (i in 0 until number) {
@@ -69,7 +69,7 @@ class CheckIfWordIsCorrect(
 
         for (i in 0 until number) {
             letterRepository.insertLetter(currentLetters[i])
-            delay((DURATION_LETTER_ANIMATION / 5).toLong())
+            delay((DURATION_LETTER_ANIMATION / number).toLong())
         }
 
         for (i in 0 until number) {

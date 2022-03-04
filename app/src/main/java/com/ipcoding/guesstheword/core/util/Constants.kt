@@ -9,5 +9,5 @@ object Constants {
     )
     val TYPES_OF_GAMES = listOf("4 x 4", "5 x 5", "6 x 6", "7 x 7")
     val DURATION_LETTER_ANIMATION = 1000
-    val APPLICATION_LINK = "https://play.google.com/store/apps/details?id=com.ipcoding.coachpro"
+    val APPLICATION_LINK = "https://play.google.com/store/apps/details?id=com.ipcoding.guesstheword"
 }
