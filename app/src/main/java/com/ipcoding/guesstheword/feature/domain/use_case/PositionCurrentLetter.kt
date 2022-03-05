@@ -1,10 +1,15 @@
 package com.ipcoding.guesstheword.feature.domain.use_case
 
-import com.ipcoding.guesstheword.feature.domain.model.Letter
+import com.ipcoding.guesstheword.feature.domain.repository.LetterRepository
 
-class PositionCurrentLetter {
+class PositionCurrentLetter(
+    private val letterRepository: LetterRepository
+) {
 
-    operator fun invoke(row: Int, position: Int, letters: List<Letter>, number: Int): Int {
+    suspend operator fun invoke(row: Int, position: Int, number: Int): Int {
+
+        val letters = letterRepository.getLetters()
+
         for (i in position until position + number) {
 
             val newPosition = (i + 1) % number

@@ -9,5 +9,5 @@ data class Game(
     val guessingWord: String,
     val isVictory: Boolean,
     val numberAttempts: Int,
-    @PrimaryKey val id: Int? = null
+    @PrimaryKey var id: Int? = null
 )

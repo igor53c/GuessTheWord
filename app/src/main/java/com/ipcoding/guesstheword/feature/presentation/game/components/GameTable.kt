@@ -7,9 +7,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ipcoding.guesstheword.core.util.TestTags.GAME_TABLE
 import com.ipcoding.guesstheword.feature.presentation.game.GameViewModel
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 import com.ipcoding.guesstheword.ui.theme.Colors
@@ -28,7 +30,7 @@ fun GameTable(
 
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+        modifier = Modifier.testTag(GAME_TABLE)
     ) {
         items(letters.size / gameNumber) { item1 ->
             LazyRow(modifier = Modifier) {

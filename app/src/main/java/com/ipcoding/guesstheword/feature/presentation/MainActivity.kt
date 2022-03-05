@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
                             BackHandler(true) {}
                         }
                         composable(route = Screen.StatisticsScreen.route) {
-                            StatisticsScreen(navController = navController)
+                            StatisticsScreen()
                             BackHandler(true) {
                                 navController.navigate(Screen.StartScreen.route)
                             }

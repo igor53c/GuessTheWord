@@ -1,7 +1,6 @@
 package com.ipcoding.guesstheword.feature.domain.use_case
 
 import androidx.compose.ui.graphics.toArgb
-import com.ipcoding.guesstheword.feature.domain.model.Letter
 import com.ipcoding.guesstheword.feature.domain.repository.LetterRepository
 import com.ipcoding.guesstheword.ui.theme.Colors
 
@@ -9,8 +8,9 @@ class CheckAllLettersEntered(
     private val letterRepository: LetterRepository
 ) {
 
-    suspend operator fun invoke(row: Int, letters: List<Letter>, number: Int): Boolean {
+    suspend operator fun invoke(row: Int, number: Int): Boolean {
 
+        val letters = letterRepository.getLetters()
         var areEntered = true
 
         for (column in 0 until number) {

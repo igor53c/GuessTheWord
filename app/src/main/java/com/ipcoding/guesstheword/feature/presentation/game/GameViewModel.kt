@@ -76,18 +76,16 @@ class GameViewModel @Inject constructor(
                 column = currentLetter.value,
                 number = gameNumber.value
             )
+            positionCurrentLetter()
         }
-        positionCurrentLetter()
     }
 
-    private fun positionCurrentLetter() {
-        _currentLetter.value =
-            allUseCases.positionCurrentLetter(
-                row = currentRow.value,
-                position = currentLetter.value,
-                letters = letters.value,
-                number = gameNumber.value
-            )
+    private suspend fun positionCurrentLetter() {
+        _currentLetter.value = allUseCases.positionCurrentLetter(
+            row = currentRow.value,
+            position = currentLetter.value,
+            number = gameNumber.value
+        )
     }
 
     fun checkAllLettersEntered() {
@@ -99,7 +97,6 @@ class GameViewModel @Inject constructor(
             viewModelScope.launch {
                 if (allUseCases.checkAllLettersEntered(
                         row = currentRow.value,
-                        letters = letters.value,
                         number = gameNumber.value
                     )
                 ) {
@@ -115,7 +112,6 @@ class GameViewModel @Inject constructor(
     private suspend fun checkWordInDictionary() {
         if (allUseCases.checkWordInDictionary(
                 row = currentRow.value,
-                letters = letters.value,
                 number = gameNumber.value
             )
         ) {

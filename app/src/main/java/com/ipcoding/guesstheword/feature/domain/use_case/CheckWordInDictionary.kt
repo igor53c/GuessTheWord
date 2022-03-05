@@ -4,12 +4,15 @@ import com.ipcoding.guesstheword.core.util.all_words.five_letters.*
 import com.ipcoding.guesstheword.core.util.all_words.four_letters.*
 import com.ipcoding.guesstheword.core.util.all_words.seven_words.*
 import com.ipcoding.guesstheword.core.util.all_words.six_letters.*
-import com.ipcoding.guesstheword.feature.domain.model.Letter
+import com.ipcoding.guesstheword.feature.domain.repository.LetterRepository
 
-class CheckWordInDictionary {
+class CheckWordInDictionary(
+    private val letterRepository: LetterRepository
+) {
 
-    operator fun invoke(row: Int, letters: List<Letter>, number: Int): Boolean {
+    suspend operator fun invoke(row: Int, number: Int): Boolean {
 
+        val letters = letterRepository.getLetters()
         var currentWord = ""
 
         for (column in 0 until number) {

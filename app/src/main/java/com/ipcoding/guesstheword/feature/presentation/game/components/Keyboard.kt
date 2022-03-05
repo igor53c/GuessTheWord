@@ -15,11 +15,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ipcoding.guesstheword.R
 import com.ipcoding.guesstheword.core.util.Constants.DURATION_LETTER_ANIMATION
+import com.ipcoding.guesstheword.core.util.TestTags.KEYBOARD_FIELD
 import com.ipcoding.guesstheword.feature.presentation.game.GameViewModel
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 
@@ -35,7 +37,7 @@ fun Keyboard(
     ) {
         LazyColumn(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
+            modifier = Modifier.testTag(KEYBOARD_FIELD)
         ) {
             items(3) { item1 ->
                 LazyRow(modifier = Modifier) {

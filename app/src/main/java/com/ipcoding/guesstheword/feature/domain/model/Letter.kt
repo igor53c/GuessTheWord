@@ -12,5 +12,5 @@ data class Letter(
     val column: Int,
     var color: Int = Colors.Blue.toArgb(),
     val isKeyboard: Boolean = false,
-    @PrimaryKey val id: Int? = null
+    @PrimaryKey var id: Int? = null
 )
