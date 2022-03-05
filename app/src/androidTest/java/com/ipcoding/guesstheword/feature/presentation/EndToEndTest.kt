@@ -1,12 +1,17 @@
 package com.ipcoding.guesstheword.feature.presentation
+
 import androidx.activity.compose.BackHandler
+import androidx.compose.material.Surface
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.test.espresso.Espresso
 import com.ipcoding.guesstheword.R
 import com.ipcoding.guesstheword.core.domain.preferences.Preferences
 import com.ipcoding.guesstheword.core.util.Constants
@@ -22,7 +27,6 @@ import com.ipcoding.guesstheword.ui.theme.AppTheme
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
@@ -39,9 +43,14 @@ class EndToEndTest {
     @get:Rule(order = 1)
     val composeRule = createAndroidComposeRule<MainActivity>()
 
-    @Inject lateinit var preferences: Preferences
-    @Inject lateinit var letterRepository: LetterRepository
-    @Inject lateinit var gameRepository: GameRepository
+    @Inject
+    lateinit var preferences: Preferences
+
+    @Inject
+    lateinit var letterRepository: LetterRepository
+
+    @Inject
+    lateinit var gameRepository: GameRepository
 
     private lateinit var navController: NavHostController
     private lateinit var chooseGameString: String
@@ -56,30 +65,34 @@ class EndToEndTest {
                 navController = rememberNavController()
                 chooseGameString = stringResource(id = R.string.choose_game)
                 enterIcon = stringResource(id = R.string.enter_icon)
-                NavHost(
-                    navController = navController,
-                    startDestination = Screen.StartScreen.route
+                Surface(
+                    color = AppTheme.colors.background
                 ) {
-                    composable(route = Screen.GameScreen.route) {
-                        GameScreen(navController = navController)
-                    }
-                    composable(route = Screen.StartScreen.route) {
-                        StartScreen(
-                            navController = navController,
-                            onChangeThemeClick = {}
-                        )
-                        BackHandler(true) {}
-                    }
-                    composable(route = Screen.StatisticsScreen.route) {
-                        StatisticsScreen()
-                        BackHandler(true) {
-                            navController.navigate(Screen.StartScreen.route)
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.StartScreen.route
+                    ) {
+                        composable(route = Screen.GameScreen.route) {
+                            GameScreen(navController = navController)
                         }
-                    }
-                    composable(route = Screen.InfoScreen.route) {
-                        InfoScreen()
-                        BackHandler(true) {
-                            navController.navigate(Screen.StartScreen.route)
+                        composable(route = Screen.StartScreen.route) {
+                            StartScreen(
+                                navController = navController,
+                                onChangeThemeClick = {}
+                            )
+                            BackHandler(true) {}
+                        }
+                        composable(route = Screen.StatisticsScreen.route) {
+                            StatisticsScreen()
+                            BackHandler(true) {
+                                navController.navigate(Screen.StartScreen.route)
+                            }
+                        }
+                        composable(route = Screen.InfoScreen.route) {
+                            InfoScreen()
+                            BackHandler(true) {
+                                navController.navigate(Screen.StartScreen.route)
+                            }
                         }
                     }
                 }
@@ -88,33 +101,101 @@ class EndToEndTest {
     }
 
     @Test
-    fun game_test() {
+    fun fourGame_5x5_is100percent() {
 
+        playGame(numberAttempts = 1, gameNumber = 1)
+
+        Espresso.pressBack()
+
+        playGame(numberAttempts = 2, gameNumber = 2)
+
+        Espresso.pressBack()
+
+        playGame(numberAttempts = 3, gameNumber = 3)
+
+        Espresso.pressBack()
+
+        playGame(numberAttempts = 5, gameNumber = 4)
+    }
+
+    private fun playGame(numberAttempts: Int, gameNumber: Int) {
         composeRule.onNodeWithText(chooseGameString).performClick()
         composeRule.onNodeWithText(Constants.TYPES_OF_GAMES[1]).performClick()
         val guessingWord = preferences.loadRandomWord()
+
+        for (i in 1 until numberAttempts) {
+
+            composeRule.onNodeWithText("M").performClick()
+
+            composeRule.onNodeWithText("E").performClick()
+
+            composeRule.onNodeWithText("T").performClick()
+
+            composeRule.onNodeWithText("R").performClick()
+
+            composeRule.onNodeWithText("A").performClick()
+
+            composeRule.waitUntil(10000L) {
+                runBlocking {
+                    val letters = letterRepository.getLetters()
+                    letters[(i - 1) * 5 + 4].text != ""
+                }
+            }
+
+            composeRule.onNodeWithContentDescription(enterIcon).performClick()
+
+            var number = 0
+            composeRule.waitUntil(10000L) {
+                runBlocking {
+                    number++
+                    number == 200
+                }
+            }
+        }
+
         guessingWord?.get(0)?.let {
             composeRule.onNodeWithText(it.uppercase()).performClick()
         }
+
         guessingWord?.get(1)?.let {
             composeRule.onNodeWithText(it.uppercase()).performClick()
         }
+
         guessingWord?.get(2)?.let {
             composeRule.onNodeWithText(it.uppercase()).performClick()
         }
+
         guessingWord?.get(3)?.let {
             composeRule.onNodeWithText(it.uppercase()).performClick()
         }
+
         guessingWord?.get(4)?.let {
             composeRule.onNodeWithText(it.uppercase()).performClick()
         }
-        composeRule.onNodeWithContentDescription(enterIcon).performClick()
-        runBlocking {
-            delay(5000L)
+
+        composeRule.waitUntil(10000L) {
+            runBlocking {
+                val letters = letterRepository.getLetters()
+                letters[(numberAttempts - 1) * 5 + 4].text != ""
+            }
         }
 
-        composeRule.onNodeWithText("100%").assertDoesNotExist()
+        composeRule.onNodeWithContentDescription(enterIcon).performClick()
 
-        composeRule.mainClock.advanceTimeBy(5000L)
+        composeRule.waitUntil(10000L) {
+            runBlocking {
+                val games = gameRepository.getGames(5)
+                games.size == gameNumber
+            }
+        }
+
+        var number = 0
+
+        composeRule.waitUntil(10000L) {
+            number++
+            number == 50
+        }
+
+        composeRule.onNodeWithText("100%").assertExists()
     }
 }

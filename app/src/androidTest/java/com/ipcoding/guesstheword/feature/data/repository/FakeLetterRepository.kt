@@ -10,7 +10,7 @@ class FakeLetterRepository : LetterRepository {
     private var letters = mutableListOf<Letter>()
 
     override suspend fun insertLetter(letter: Letter) {
-        if(letter.id == null) {
+        if (letter.id == null) {
             letter.id = letters.size + 1
             letters.add(letter)
         } else {

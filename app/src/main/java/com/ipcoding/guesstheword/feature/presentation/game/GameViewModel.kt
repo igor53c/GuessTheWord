@@ -152,16 +152,19 @@ class GameViewModel @Inject constructor(
             )
             _isWordCorrect.value = true
             _isEndOfGame.value = true
+        } else {
+            if (row == (gameNumber.value - 1)) {
+                allUseCases.insertGame(
+                    typeGameNumber = gameNumber.value,
+                    guessingWord = guessingWord.value,
+                    isVictory = false,
+                    numberAttempts = row + 1,
+                )
+                _isEndOfGame.value = true
+            }
         }
         if (row == (gameNumber.value - 1)) {
-            allUseCases.insertGame(
-                typeGameNumber = gameNumber.value,
-                guessingWord = guessingWord.value,
-                isVictory = false,
-                numberAttempts = row + 1,
-            )
             _currentLetter.value = -1
-            _isEndOfGame.value = true
         }
     }
 

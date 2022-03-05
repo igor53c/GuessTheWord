@@ -8,7 +8,7 @@ class FakeGameRepository : GameRepository {
     private var games = mutableListOf<Game>()
 
     override suspend fun insertGame(game: Game) {
-        if(game.id == null) {
+        if (game.id == null) {
             game.id = games.size + 1
             games.add(game)
         } else {
