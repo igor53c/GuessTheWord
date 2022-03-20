@@ -136,10 +136,7 @@ class EndToEndTest {
             composeRule.onNodeWithText("A").performClick()
 
             composeRule.waitUntil(10000L) {
-                runBlocking {
-                    val letters = letterRepository.getLetters()
-                    letters[(i - 1) * 5 + 4].text != ""
-                }
+                runBlocking { letterRepository.getLetters()[(i - 1) * 5 + 4].text != "" }
             }
 
             composeRule.onNodeWithContentDescription(enterIcon).performClick()
@@ -174,19 +171,13 @@ class EndToEndTest {
         }
 
         composeRule.waitUntil(10000L) {
-            runBlocking {
-                val letters = letterRepository.getLetters()
-                letters[(numberAttempts - 1) * 5 + 4].text != ""
-            }
+            runBlocking { letterRepository.getLetters()[(numberAttempts - 1) * 5 + 4].text != "" }
         }
 
         composeRule.onNodeWithContentDescription(enterIcon).performClick()
 
         composeRule.waitUntil(10000L) {
-            runBlocking {
-                val games = gameRepository.getGames(5)
-                games.size == gameNumber
-            }
+            runBlocking { gameRepository.getGames(5).size == gameNumber }
         }
 
         var number = 0
