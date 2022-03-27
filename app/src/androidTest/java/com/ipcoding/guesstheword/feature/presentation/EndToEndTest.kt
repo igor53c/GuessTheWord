@@ -83,7 +83,7 @@ class EndToEndTest {
                             BackHandler(true) {}
                         }
                         composable(route = Screen.StatisticsScreen.route) {
-                            StatisticsScreen()
+                            StatisticsScreen(navController = navController)
                             BackHandler(true) {
                                 navController.navigate(Screen.StartScreen.route)
                             }

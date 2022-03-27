@@ -19,4 +19,16 @@ class GameRepositoryImpl(
     override suspend fun getGames(typeGameNumber: Int): List<Game> {
         return dao.getGames(typeGameNumber)
     }
+
+    override suspend fun numberOfGames(typeGameNumber: Int): Int {
+        return dao.numberOfGames(typeGameNumber)
+    }
+
+    override suspend fun numberOfWins(typeGameNumber: Int): Int {
+        return dao.numberOfWins(typeGameNumber)
+    }
+
+    override suspend fun winsFromAttempt(typeGameNumber: Int, numberAttempts: Int): Int {
+        return dao.winsFromAttempt(typeGameNumber, numberAttempts)
+    }
 }

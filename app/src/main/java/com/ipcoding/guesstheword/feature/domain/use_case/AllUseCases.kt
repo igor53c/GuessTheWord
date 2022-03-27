@@ -12,5 +12,6 @@ data class AllUseCases(
     val checkWordInDictionary: CheckWordInDictionary,
     val saveRandomWord: SaveRandomWord,
     val insertGame: InsertGame,
-    val getStats: GetStats
+    val getStats: GetStats,
+    val getGameStats: GetGameStats
 )

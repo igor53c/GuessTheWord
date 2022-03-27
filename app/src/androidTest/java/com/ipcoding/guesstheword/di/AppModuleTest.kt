@@ -66,7 +66,8 @@ object AppModuleTest {
             checkWordInDictionary = CheckWordInDictionary(letterRepository),
             saveRandomWord = SaveRandomWord(preferences),
             insertGame = InsertGame(gameRepository),
-            getStats = GetStats(gameRepository)
+            getStats = GetStats(gameRepository),
+            getGameStats = GetGameStats(gameRepository)
         )
     }
 }

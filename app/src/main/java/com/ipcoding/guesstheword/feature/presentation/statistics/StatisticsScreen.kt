@@ -11,12 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.ipcoding.guesstheword.R
 import com.ipcoding.guesstheword.feature.presentation.statistics.components.OneRow
+import com.ipcoding.guesstheword.feature.presentation.util.Screen
 import com.ipcoding.guesstheword.ui.theme.AppTheme
 
 @Composable
 fun StatisticsScreen(
+    navController: NavController,
     viewModel: StatisticsViewModel = hiltViewModel()
 ) {
     val stats = viewModel.stats.value
@@ -35,8 +38,7 @@ fun StatisticsScreen(
             color = AppTheme.colors.primary,
             style = AppTheme.typography.h5,
             textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         )
 
         LazyColumn(
@@ -48,7 +50,12 @@ fun StatisticsScreen(
                 if (stats.isNotEmpty()) {
                     OneRow(
                         number = item + 4,
-                        progress = stats[item].guessingSuccess
+                        progress = stats[item].guessingSuccess,
+                        onRowClick = {
+                            navController.navigate(
+                                Screen.GameStatsScreen.route + "?gameNumber=${item + 4}"
+                            )
+                        }
                     )
                 }
             }
@@ -59,8 +66,7 @@ fun StatisticsScreen(
             color = AppTheme.colors.primary,
             style = AppTheme.typography.h5,
             textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         )
 
         LazyColumn(
@@ -73,7 +79,12 @@ fun StatisticsScreen(
                     OneRow(
                         number = item + 4,
                         progress = stats[item].numberAttempts,
-                        isNumberAttempts = true
+                        isNumberAttempts = true,
+                        onRowClick = {
+                            navController.navigate(
+                                Screen.GameStatsScreen.route + "?gameNumber=${item + 4}"
+                            )
+                        }
                     )
                 }
             }

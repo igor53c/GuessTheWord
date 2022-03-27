@@ -23,4 +23,7 @@
     <string name="not_in_word">Slovo nije u reči ni na jednom mestu</string>
     <string name="but_wrong_place">Slovo je u reči, ali na pogrešnom mestu</string>
     <string name="in_right_place">Slovo je u reči i na pravom mestu</string>
+    <string name="total_games_played">Broj odigranih igara:</string>
+    <string name="number_of_wins">Broj pogodaka:</string>
+    <string name="wins_from_attempts">Pogoci iz pokušaja</string>
 </resources>

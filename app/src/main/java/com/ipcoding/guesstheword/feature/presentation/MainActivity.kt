@@ -8,12 +8,15 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ipcoding.guesstheword.core.domain.preferences.Preferences
 import com.ipcoding.guesstheword.feature.presentation.game.GameScreen
+import com.ipcoding.guesstheword.feature.presentation.game_stats.GameStatsScreen
 import com.ipcoding.guesstheword.feature.presentation.info.InfoScreen
 import com.ipcoding.guesstheword.feature.presentation.start.StartScreen
 import com.ipcoding.guesstheword.feature.presentation.statistics.StatisticsScreen
@@ -68,7 +71,7 @@ class MainActivity : ComponentActivity() {
                             BackHandler(true) {}
                         }
                         composable(route = Screen.StatisticsScreen.route) {
-                            StatisticsScreen()
+                            StatisticsScreen(navController = navController)
                             BackHandler(true) {
                                 navController.navigate(Screen.StartScreen.route)
                             }
@@ -77,6 +80,20 @@ class MainActivity : ComponentActivity() {
                             InfoScreen()
                             BackHandler(true) {
                                 navController.navigate(Screen.StartScreen.route)
+                            }
+                        }
+                        composable(
+                            route = Screen.GameStatsScreen.route + "?gameNumber={gameNumber}",
+                            arguments = listOf(
+                                navArgument(name = "gameNumber") {
+                                    type = NavType.IntType
+                                    defaultValue = -1
+                                }
+                            )
+                        ) {
+                            GameStatsScreen()
+                            BackHandler(true) {
+                                navController.navigate(Screen.StatisticsScreen.route)
                             }
                         }
                     }

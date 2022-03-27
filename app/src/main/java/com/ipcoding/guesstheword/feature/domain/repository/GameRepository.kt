@@ -9,4 +9,10 @@ interface GameRepository {
     suspend fun deleteGame(game: Game)
 
     suspend fun getGames(typeGameNumber: Int): List<Game>
+
+    suspend fun numberOfGames(typeGameNumber: Int): Int
+
+    suspend fun numberOfWins(typeGameNumber: Int): Int
+
+    suspend fun winsFromAttempt(typeGameNumber: Int, numberAttempts: Int): Int
 }

@@ -1,6 +1,7 @@
 package com.ipcoding.guesstheword.feature.presentation.statistics.components
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,7 +23,8 @@ import kotlin.math.round
 fun OneRow(
     number: Int,
     progress: Float,
-    isNumberAttempts: Boolean = false
+    isNumberAttempts: Boolean = false,
+    onRowClick: () -> Unit
 ) {
     val targetProgress = remember { mutableStateOf(0f) }
     val animatedProgress = animateFloatAsState(targetValue = targetProgress.value)
@@ -47,7 +49,8 @@ fun OneRow(
     Row(
         modifier = Modifier
             .height(AppTheme.dimensions.spaceExtraLarge)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { onRowClick() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
